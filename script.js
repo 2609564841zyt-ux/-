@@ -68,7 +68,7 @@ const detailConfig = {
     screenClass: "xunxian-detail-screen",
     hudClass: "xunxian-hud",
     media: [
-      mediaImage("./assets/xunxian-detail-01.gif", "寻仙项目展示 1"),
+      mediaVideo("./assets/xunxian-detail-01.mp4", { className: "detail-video", preload: "metadata" }),
       ...sequence("./assets/xunxian-detail-", ["02", "03", "04"], ".jpg", "寻仙项目展示"),
     ],
   },
@@ -79,7 +79,7 @@ const detailConfig = {
     screenClass: "baxian-detail-screen",
     hudClass: "baxian-hud",
     media: [
-      mediaImage("./assets/baxian-detail-01.gif", "八仙送福项目展示 1"),
+      mediaVideo("./assets/baxian-detail-01.mp4", { className: "detail-video", preload: "metadata" }),
       ...sequence("./assets/baxian-detail-", ["02", "03", "04", "05", "06"], ".png", "八仙送福项目展示"),
     ],
   },
@@ -97,7 +97,7 @@ const detailConfig = {
     screenClass: "fenyun-detail-screen",
     hudClass: "fenyun-hud",
     media: [
-      mediaImage("./assets/fenyun-detail-01.gif", "粉韵项目展示 1"),
+      mediaVideo("./assets/fenyun-detail-01.mp4", { className: "detail-video", preload: "metadata" }),
       ...sequence("./assets/fenyun-detail-", ["02", "03", "04"], ".png", "粉韵项目展示"),
       ...sequence("./assets/fenyun-detail-", ["06", "07"], ".jpg", "粉韵项目展示"),
     ],
@@ -135,7 +135,7 @@ const detailConfig = {
     media: [
       mediaImage("./assets/youlong-detail-01.png", "有龙项目展示 1"),
       mediaImage("./assets/youlong-detail-02.jpg", "有龙项目展示 2"),
-      mediaImage("./assets/youlong-detail-03.png", "有龙项目展示 3"),
+      mediaImage("./assets/youlong-detail-03.jpg", "有龙项目展示 3"),
       mediaImage("./assets/youlong-detail-04.png", "有龙项目展示 4"),
     ],
   },
