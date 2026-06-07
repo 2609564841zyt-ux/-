@@ -308,6 +308,11 @@ h1 {
   display: block;
 }
 
+.floor:not(.hero-floor) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px 1200px;
+}
+
 .about-floor {
   display: grid;
   align-items: center;
