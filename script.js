@@ -254,9 +254,17 @@ const createMediaNode = (item) => {
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
+    video.setAttribute("webkit-playsinline", "");
+    if (item.poster) {
+      video.poster = item.poster;
+    }
     if (item.controls) {
       video.controls = true;
     }
+    const attemptPlay = () => {
+      video.play().catch(() => {});
+    };
+    video.addEventListener("canplay", attemptPlay, { once: true });
     return video;
   }
 
