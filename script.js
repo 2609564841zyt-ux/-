@@ -6,6 +6,67 @@ const musicToggle = document.querySelector(".music-toggle");
 const musicStatus = document.querySelector(".music-toggle__status");
 const detailPanels = [...document.querySelectorAll(".growfi-detail-floor")];
 const renderedDetailKeys = new Set();
+const isMobileViewport = () => window.matchMedia("(max-width: 640px)").matches;
+
+const videoPosters = {
+  "./assets/hero-elevator.mp4": "./preview-home.png",
+  "./assets/growfi.mp4": "./assets/growfi-detail-01.jpg",
+  "./assets/loading.mp4": "./assets/loading-detail-02.jpg",
+  "./assets/loading-detail-01.mp4": "./assets/loading-detail-02.jpg",
+  "./assets/moodie-detail-00.mp4": "./assets/moodie-detail-M1.jpg",
+  "./assets/brand-qiancheng.mp4": "./assets/qiancheng-detail-01.jpg",
+  "./assets/brand-youlong.mp4": "./assets/youlong-detail-01.png",
+  "./assets/brand-xunxian.mp4": "./assets/xunxian-detail-02.jpg",
+  "./assets/brand-baxian.mp4": "./assets/baxian-detail-02.png",
+  "./assets/brand-fenyun.mp4": "./assets/fenyun-detail-02.png",
+  "./assets/brand-zhiyu.mp4": "./assets/zhiyu-detail-01.png",
+  "./assets/ip-taohuaji.mp4": "./assets/taohuaji-detail-01.png",
+  "./assets/ip-qianwen.mp4": "./assets/qianwen-detail-01.jpg",
+  "./assets/ip-qianjin.mp4": "./assets/qianjin-detail-01.png",
+  "./assets/ip-jianwei.mp4": "./assets/jianwei-detail-01.png",
+  "./assets/contact-floor-bg.mp4": "./assets/wechat-qr.png",
+  "./assets/xunxian-detail-01.mp4": "./assets/xunxian-detail-02.jpg",
+  "./assets/baxian-detail-01.mp4": "./assets/baxian-detail-02.png",
+  "./assets/fenyun-detail-01.mp4": "./assets/fenyun-detail-02.png",
+  "./assets/fruit-capture-demo-compressed.mp4": "./assets/fruit-capture-preview.png",
+  "./assets/2024-2025-motion-compressed.mp4": "./preview-home.png",
+};
+
+const normalizeMediaPath = (src) => {
+  try {
+    const url = new URL(src, window.location.href);
+    const assetPath = url.pathname.split("/assets/")[1];
+    return assetPath ? `./assets/${decodeURIComponent(assetPath)}` : src;
+  } catch {
+    return src;
+  }
+};
+
+const enhanceVideo = (video, poster) => {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+
+  if (!video.preload || video.preload === "none") {
+    video.preload = "metadata";
+  }
+
+  const fallbackPoster = poster || videoPosters[normalizeMediaPath(video.currentSrc || video.src)];
+  if (!video.poster && fallbackPoster) {
+    video.poster = fallbackPoster;
+  }
+
+  const attemptPlay = () => {
+    video.play().catch(() => {});
+  };
+
+  video.addEventListener("loadedmetadata", attemptPlay, { once: true });
+  video.addEventListener("canplay", attemptPlay, { once: true });
+  video.load();
+  requestAnimationFrame(attemptPlay);
+};
 
 const mediaImage = (src, alt) => ({
   type: "img",
@@ -18,6 +79,7 @@ const mediaVideo = (src, options = {}) => ({
   src,
   className: options.className || "detail-video",
   preload: options.preload || "metadata",
+  poster: options.poster || videoPosters[src],
   controls: options.controls !== false,
 });
 
@@ -239,7 +301,8 @@ const syncElevatorPane = () => {
 const createMediaNode = (item) => {
   if (item.type === "img") {
     const image = document.createElement("img");
-    image.loading = "lazy";
+    image.loading = isMobileViewport() ? "eager" : "lazy";
+    image.decoding = "async";
     image.src = item.src;
     image.alt = item.alt;
     return image;
@@ -253,18 +316,13 @@ const createMediaNode = (item) => {
     video.autoplay = true;
     video.muted = true;
     video.loop = true;
-    video.playsInline = true;
-    video.setAttribute("webkit-playsinline", "");
     if (item.poster) {
       video.poster = item.poster;
     }
     if (item.controls) {
       video.controls = true;
     }
-    const attemptPlay = () => {
-      video.play().catch(() => {});
-    };
-    video.addEventListener("canplay", attemptPlay, { once: true });
+    enhanceVideo(video, item.poster);
     return video;
   }
 
@@ -428,6 +486,17 @@ document.addEventListener("click", (event) => {
 
 window.addEventListener("hashchange", () => {
   navigateHash(window.location.hash, { animate: false });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("video").forEach((video) => enhanceVideo(video));
+
+  if (isMobileViewport()) {
+    document.querySelectorAll(".project-media img, .floor-slice img, .wechat-qr img").forEach((image) => {
+      image.loading = "eager";
+      image.decoding = "async";
+    });
+  }
 });
 
 const initialHash = window.location.hash;

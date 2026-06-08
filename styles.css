@@ -1931,6 +1931,30 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .floor:not(.hero-floor) {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+
+  .project-media,
+  .ip-project-card .project-media,
+  .brand-project-card .project-media {
+    min-height: 200px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-media img,
+  .project-media video,
+  .ip-project-card .project-media img,
+  .ip-project-card .project-media video {
+    min-height: 100%;
+  }
+
+  .detail-screen img,
+  .detail-video {
+    content-visibility: visible;
+  }
+
   .site-hud {
     align-items: flex-start;
   }
