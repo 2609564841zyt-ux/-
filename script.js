@@ -14,6 +14,7 @@ const videoPosters = {
   "./assets/loading.mp4": "./assets/loading-detail-02.jpg",
   "./assets/loading-detail-01.mp4": "./assets/loading-detail-02.jpg",
   "./assets/moodie-detail-00.mp4": "./assets/moodie-detail-M1.jpg",
+  "./assets/ai-collection-intro.mp4": "./assets/ai-collection-detail-01.png",
   "./assets/brand-qiancheng.mp4": "./assets/qiancheng-detail-01.jpg",
   "./assets/brand-youlong.mp4": "./assets/youlong-detail-01.png",
   "./assets/brand-xunxian.mp4": "./assets/xunxian-detail-02.jpg",
@@ -66,6 +67,28 @@ const enhanceVideo = (video, poster) => {
   video.addEventListener("canplay", attemptPlay, { once: true });
   video.load();
   requestAnimationFrame(attemptPlay);
+};
+
+const addMobileVideoFallback = (video, poster) => {
+  if (!isMobileViewport() || video.dataset.mobileFallbackReady === "true") {
+    return;
+  }
+
+  const fallbackPoster = poster || video.poster || videoPosters[normalizeMediaPath(video.currentSrc || video.src)];
+  if (!fallbackPoster) {
+    return;
+  }
+
+  const image = document.createElement("img");
+  image.className = "mobile-video-poster";
+  image.src = fallbackPoster;
+  image.alt = video.getAttribute("aria-label") || "";
+  image.loading = "eager";
+  image.decoding = "async";
+  image.setAttribute("aria-hidden", image.alt ? "false" : "true");
+
+  video.dataset.mobileFallbackReady = "true";
+  video.after(image);
 };
 
 const mediaImage = (src, alt) => ({
@@ -123,6 +146,14 @@ const detailConfig = {
       ...sequence("./assets/moodie-detail-", ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15", "M16"], ".jpg", "Moodie 项目展示"),
     ],
   },
+  "ai-collection": {
+    hudTitle: "AI COLLECTION / BIG SCREEN",
+    hudSubtitle: "SCROLL TO VIEW",
+    backHref: "#ui-floor",
+    screenClass: "ai-collection-detail-screen",
+    hudClass: "ai-collection-hud",
+    media: sequence("./assets/ai-collection-detail-", ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14"], ".png", "AI长文本收藏夹项目展示"),
+  },
   xunxian: {
     hudTitle: "XUNXIAN / BIG SCREEN",
     hudSubtitle: "SCROLL TO PLAY",
@@ -150,7 +181,9 @@ const detailConfig = {
     hudSubtitle: "SCROLL TO PLAY",
     backHref: "#ui-floor",
     hudClass: "more-hud",
-    media: sequence("./assets/more-detail-", ["01", "02", "03", "04", "05", "06", "07", "08"], ".jpg", "更多项目展示"),
+    media: sequence("./assets/more-detail-", ["01", "02", "03", "04", "05", "06", "07", "08"], ".jpg", "更多项目展示").concat(
+      sequence("./assets/more-extra-detail-", ["01", "02", "03", "04", "05"], ".png", "更多项目补充展示"),
+    ),
   },
   fenyun: {
     hudTitle: "FENYUN / BIG SCREEN",
@@ -323,6 +356,7 @@ const createMediaNode = (item) => {
       video.controls = true;
     }
     enhanceVideo(video, item.poster);
+    addMobileVideoFallback(video, item.poster);
     return video;
   }
 
@@ -489,10 +523,13 @@ window.addEventListener("hashchange", () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("video").forEach((video) => enhanceVideo(video));
+  document.querySelectorAll("video").forEach((video) => {
+    enhanceVideo(video);
+    addMobileVideoFallback(video);
+  });
 
   if (isMobileViewport()) {
-    document.querySelectorAll(".project-media img, .floor-slice img, .wechat-qr img").forEach((image) => {
+    document.querySelectorAll("img").forEach((image) => {
       image.loading = "eager";
       image.decoding = "async";
     });

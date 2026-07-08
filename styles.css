@@ -1185,6 +1185,44 @@ h1 {
   outline-offset: 6px;
 }
 
+.ui-project-card--placeholder {
+  border-style: dashed;
+  border-color: rgba(57, 255, 20, 0.22);
+  background: rgba(2, 5, 2, 0.36);
+  opacity: 0.72;
+  cursor: default;
+}
+
+.ui-project-card--placeholder:hover {
+  transform: none;
+  border-color: rgba(57, 255, 20, 0.26);
+  box-shadow: inset 0 0 24px rgba(57, 255, 20, 0.05);
+}
+
+.project-media--placeholder {
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(57, 255, 20, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.07) 1px, transparent 1px),
+    rgba(0, 0, 0, 0.36);
+  background-size: 18px 18px;
+}
+
+.project-placeholder-mark {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(57, 255, 20, 0.36);
+  border-radius: 50%;
+  color: rgba(162, 255, 131, 0.68);
+  font-family: "Orbitron", sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  box-shadow: 0 0 22px rgba(57, 255, 20, 0.08), inset 0 0 16px rgba(57, 255, 20, 0.08);
+}
+
 .growfi-detail-floor {
   position: fixed;
   inset: 0;
@@ -1208,6 +1246,39 @@ h1 {
   background:
     radial-gradient(circle at 50% 0%, rgba(149, 89, 255, 0.2), transparent 28%),
     linear-gradient(180deg, #07040d, #0d0816 45%, #050505);
+}
+
+.ai-collection-detail-floor {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(67, 136, 255, 0.24), transparent 28%),
+    linear-gradient(180deg, #030712, #071023 45%, #050505);
+}
+
+.ai-collection-detail-screen {
+  border-color: rgba(91, 154, 255, 0.26);
+  background: rgba(4, 8, 18, 0.92);
+  box-shadow: 0 0 72px rgba(67, 136, 255, 0.18), inset 0 0 48px rgba(91, 154, 255, 0.07);
+}
+
+.ai-collection-hud {
+  color: #9fc2ff;
+  border-color: rgba(91, 154, 255, 0.38);
+  background: rgba(5, 9, 18, 0.84);
+  text-shadow: 0 0 16px rgba(91, 154, 255, 0.5);
+}
+
+.ai-collection-hud a {
+  color: #e3edff;
+  border-color: rgba(91, 154, 255, 0.5);
+  background: rgba(91, 154, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(91, 154, 255, 0.12);
+}
+
+.ai-collection-hud a:hover {
+  color: #f4f8ff;
+  border-color: rgba(91, 154, 255, 0.72);
+  background: rgba(91, 154, 255, 0.16);
+  box-shadow: 0 0 20px rgba(91, 154, 255, 0.24), inset 0 0 0 1px rgba(91, 154, 255, 0.22);
 }
 
 .more-detail-floor {
@@ -1936,6 +2007,42 @@ h1 {
     contain-intrinsic-size: auto;
   }
 
+  .hero-video,
+  .about-backdrop,
+  .projects-backdrop,
+  .ui-floor-backdrop,
+  .contact-bg-video {
+    z-index: 0;
+  }
+
+  .hero-floor > :not(.hero-video),
+  .about-floor > :not(.about-backdrop),
+  .hall-floor > :not(.projects-backdrop),
+  .gallery-floor > :not(.ui-floor-backdrop),
+  .contact-floor > :not(.contact-bg-video) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .vignette {
+    z-index: 1;
+  }
+
+  .site-hud,
+  .hero-overlay,
+  .scroll-cue {
+    position: relative;
+    z-index: 2;
+  }
+
+  .site-hud {
+    position: fixed;
+  }
+
+  .scroll-cue {
+    position: absolute;
+  }
+
   .project-media,
   .ip-project-card .project-media,
   .brand-project-card .project-media {
@@ -1953,6 +2060,35 @@ h1 {
   .detail-screen img,
   .detail-video {
     content-visibility: visible;
+  }
+
+  img,
+  video {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .project-media video,
+  .detail-video,
+  .contact-bg-video {
+    display: none;
+  }
+
+  .mobile-video-poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #050505;
+  }
+
+  .hero-floor .mobile-video-poster,
+  .contact-floor .mobile-video-poster {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 
   .site-hud {
