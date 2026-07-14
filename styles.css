@@ -398,7 +398,13 @@ h1 {
   font-size: 13px;
 }
 
-.about-data-card h2,
+.about-data-card h2 {
+  color: var(--green-soft);
+  font-family: "Orbitron", "Microsoft YaHei", sans-serif;
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.08;
+}
+
 .hall-copy h2 {
   color: var(--green-soft);
   font-family: "Orbitron", "Microsoft YaHei", sans-serif;
@@ -407,9 +413,9 @@ h1 {
 }
 
 .about-line {
-  margin-top: 14px;
+  margin-top: 12px;
   color: var(--green-soft);
-  font-size: clamp(20px, 2vw, 28px);
+  font-size: clamp(17px, 1.6vw, 23px);
   line-height: 1.2;
 }
 
@@ -473,7 +479,7 @@ h1 {
 .about-summary {
   display: grid;
   gap: 10px;
-  margin: 18px 0 22px;
+  margin: 16px 0 18px;
 }
 
 .about-summary p {
@@ -481,6 +487,153 @@ h1 {
   font-family: "Orbitron", "Microsoft YaHei", sans-serif;
   font-size: clamp(15px, 1.5vw, 19px);
   line-height: 1.35;
+}
+
+.about-experience {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 22px;
+}
+
+.about-experience-item {
+  padding: 12px 0 0;
+  border-top: 1px solid rgba(57, 255, 20, 0.2);
+}
+
+.about-experience-item--interactive {
+  position: relative;
+  margin: 0 -10px;
+  padding: 12px 10px 10px;
+  border: 1px solid rgba(57, 255, 20, 0.24);
+  background: rgba(57, 255, 20, 0.05);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.about-experience-item--interactive::after {
+  content: "PLAY";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  color: var(--green-soft);
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  opacity: 0.68;
+}
+
+.about-experience-item--interactive:hover,
+.about-experience-item--interactive:focus-visible {
+  border-color: rgba(162, 255, 131, 0.66);
+  background: rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 24px rgba(57, 255, 20, 0.12), inset 0 0 18px rgba(57, 255, 20, 0.06);
+  outline: none;
+  transform: translateX(4px);
+}
+
+.about-experience-item header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.about-experience-item h3 {
+  color: var(--green-soft);
+  font-family: "Orbitron", "Microsoft YaHei", sans-serif;
+  font-size: clamp(14px, 1.25vw, 17px);
+  line-height: 1.25;
+}
+
+.about-experience-item time {
+  flex: 0 0 auto;
+  color: rgba(162, 255, 131, 0.76);
+  font-family: "Orbitron", "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+}
+
+.about-experience-item ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.45;
+}
+
+.about-experience-item li::marker {
+  color: var(--green-soft);
+}
+
+.experience-video-panel {
+  position: absolute;
+  top: 50%;
+  right: clamp(18px, 5vw, 92px);
+  z-index: 4;
+  width: min(42vw, 560px);
+  max-height: min(82vh, 760px);
+  overflow-y: auto;
+  padding: 12px;
+  border: 1px solid rgba(162, 255, 131, 0.5);
+  background: rgba(4, 8, 4, 0.86);
+  box-shadow: 0 0 52px rgba(57, 255, 20, 0.18), inset 0 0 32px rgba(57, 255, 20, 0.08);
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(28px, -50%);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.experience-video-panel.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%);
+}
+
+.experience-video-panel__hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: var(--green-soft);
+  font-family: "Orbitron", "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+}
+
+.experience-video-panel__close {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(162, 255, 131, 0.46);
+  color: var(--green-soft);
+  background: rgba(0, 0, 0, 0.42);
+  font: inherit;
+  cursor: pointer;
+}
+
+.experience-video-panel__close:hover,
+.experience-video-panel__close:focus-visible {
+  color: var(--black);
+  background: var(--green-soft);
+  outline: none;
+}
+
+.experience-video-panel__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #020402;
+  object-fit: contain;
+}
+
+.experience-video-panel__video + .experience-video-panel__video {
+  margin-top: 10px;
+}
+
+.experience-video-panel__video[hidden] {
+  display: none;
 }
 
 .profile-grid {
@@ -1584,6 +1737,17 @@ h1 {
   border-color: rgba(149, 89, 255, 0.4);
 }
 
+.moodie-try-link {
+  border-color: rgba(185, 148, 255, 0.68);
+  color: #10071f;
+  background: linear-gradient(180deg, #cdb5ff, #9559ff);
+  box-shadow: 0 0 34px rgba(149, 89, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.moodie-try-link:hover {
+  box-shadow: 0 0 46px rgba(149, 89, 255, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.36);
+}
+
 .more-hud {
   color: #82caff;
   border-color: rgba(114, 194, 244, 0.36);
@@ -2166,6 +2330,34 @@ h1 {
 
   .about-summary {
     gap: 8px;
+  }
+
+  .about-experience-item header {
+    display: grid;
+    gap: 4px;
+  }
+
+  .about-experience-item time {
+    font-size: 11px;
+  }
+
+  .about-experience-item--interactive {
+    margin: 0;
+  }
+
+  .experience-video-panel {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    top: auto;
+    bottom: 18px;
+    width: auto;
+    z-index: 42;
+    transform: translateY(24px);
+  }
+
+  .experience-video-panel.is-open {
+    transform: translateY(0);
   }
 
   .category-grid,

@@ -5,6 +5,12 @@ const bgm = document.querySelector(".site-bgm");
 const musicToggle = document.querySelector(".music-toggle");
 const musicStatus = document.querySelector(".music-toggle__status");
 const detailPanels = [...document.querySelectorAll(".growfi-detail-floor")];
+const experienceVideoTriggers = [...document.querySelectorAll("[data-experience-video], [data-experience-videos]")];
+const experienceVideoPanel = document.querySelector("#experience-video-panel");
+const experienceVideoTitle = experienceVideoPanel?.querySelector(".experience-video-panel__hud span");
+const experienceVideos = [...(experienceVideoPanel?.querySelectorAll("video") || [])];
+const experienceVideo = experienceVideos[0];
+const experienceVideoClose = experienceVideoPanel?.querySelector(".experience-video-panel__close");
 const renderedDetailKeys = new Set();
 const isMobileViewport = () => window.matchMedia("(max-width: 640px)").matches;
 
@@ -145,6 +151,7 @@ const detailConfig = {
       mediaVideo("./assets/moodie-detail-00.mp4", { className: "detail-video", preload: "metadata" }),
       ...sequence("./assets/moodie-detail-", ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15", "M16"], ".jpg", "Moodie 项目展示"),
     ],
+    actions: [mediaLink("file:///G:/%E5%9C%B0%E7%90%83online/index.html", "点击进入", "try-project-link moodie-try-link")],
   },
   "ai-collection": {
     hudTitle: "AI COLLECTION / BIG SCREEN",
@@ -429,6 +436,64 @@ const openDetailPanel = (target) => {
   target.scrollTo({ top: 0, behavior: "auto" });
 };
 
+const closeExperienceVideoPanel = () => {
+  experienceVideoPanel?.classList.remove("is-open");
+  experienceVideoPanel?.setAttribute("aria-hidden", "true");
+  experienceVideoTriggers.forEach((trigger) => {
+    trigger.setAttribute("aria-expanded", "false");
+  });
+  experienceVideos.forEach((video) => {
+    video.pause();
+  });
+};
+
+const openExperienceVideoPanel = (trigger) => {
+  if (!experienceVideoPanel || !experienceVideo || !trigger) {
+    return;
+  }
+
+  const nextSources = (trigger.dataset.experienceVideos || trigger.dataset.experienceVideo || "")
+    .split(",")
+    .map((src) => src.trim())
+    .filter(Boolean);
+
+  if (experienceVideoTitle && trigger.dataset.experienceTitle) {
+    experienceVideoTitle.textContent = trigger.dataset.experienceTitle;
+  }
+
+  experienceVideos.forEach((video, index) => {
+    const nextSrc = nextSources[index];
+    video.hidden = !nextSrc;
+    video.pause();
+
+    if (!nextSrc) {
+      video.removeAttribute("src");
+      return;
+    }
+
+    if (normalizeMediaPath(video.currentSrc || video.src) !== nextSrc) {
+      video.src = nextSrc;
+      video.load();
+    }
+
+    video.muted = false;
+    video.controls = true;
+  });
+
+  experienceVideoTriggers.forEach((item) => {
+    item.setAttribute("aria-expanded", item === trigger ? "true" : "false");
+  });
+  experienceVideoPanel.classList.add("is-open");
+  experienceVideoPanel.setAttribute("aria-hidden", "false");
+  experienceVideos
+    .filter((video) => !video.hidden)
+    .forEach((video, index) => {
+      if (index === 0) {
+        video.play().catch(() => {});
+      }
+    });
+};
+
 const navigateHash = (hash, { animate = false } = {}) => {
   if (!hash || hash === "#top") {
     closeDetailPanels();
@@ -439,6 +504,10 @@ const navigateHash = (hash, { animate = false } = {}) => {
   const target = document.querySelector(hash);
   if (!target) {
     return;
+  }
+
+  if (hash !== "#about") {
+    closeExperienceVideoPanel();
   }
 
   const shouldOpenDetail = target.classList.contains("growfi-detail-floor");
@@ -488,6 +557,29 @@ musicToggle?.addEventListener("click", async () => {
   }
 });
 
+experienceVideoTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", () => {
+    openExperienceVideoPanel(trigger);
+  });
+
+  trigger.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    openExperienceVideoPanel(trigger);
+  });
+});
+
+experienceVideoClose?.addEventListener("click", closeExperienceVideoPanel);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeExperienceVideoPanel();
+  }
+});
+
 window.addEventListener(
   "scroll",
   () => {
@@ -524,6 +616,10 @@ window.addEventListener("hashchange", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("video").forEach((video) => {
+    if (video.dataset.manualVideo === "true" || video.hasAttribute("data-manual-video")) {
+      return;
+    }
+
     enhanceVideo(video);
     addMobileVideoFallback(video);
   });

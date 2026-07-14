@@ -72,10 +72,80 @@
             <span>ABOUT ME</span>
           </div>
           <h2>关于我 / About Me</h2>
-          <p class="about-line">Yanting / 国内211院校硕士就读</p>
+          <p class="about-line">仲晏葶 / Yanting / 国内211院校硕士就读</p>
           <div class="about-summary">
             <p>两段互联网设计实习经历</p>
+            <p>一段饮品包装设计兼职经历</p>
             <p>一段校园新媒体经历</p>
+          </div>
+          <div class="about-experience" aria-label="实习经历">
+            <article
+              class="about-experience-item about-experience-item--interactive"
+              role="button"
+              tabindex="0"
+              aria-controls="experience-video-panel"
+              aria-expanded="false"
+              data-experience-video="./assets/didi-safety-experience.mp4"
+              data-experience-title="DIDI SAFETY / VIDEO"
+            >
+              <header>
+                <h3>北京嘀嘀无限科技发展有限公司</h3>
+                <time>2026.1-2026.4</time>
+              </header>
+              <ul>
+                <li>用户端迭代出行安全入口、弹窗资源、安全推广、安全活动策划</li>
+                <li>管理层安全教育课程、内网活动，完善内部提报活动</li>
+                <li>安全管理者激励活动、维护内部论坛</li>
+              </ul>
+            </article>
+            <article
+              class="about-experience-item about-experience-item--interactive"
+              role="button"
+              tabindex="0"
+              aria-controls="experience-video-panel"
+              aria-expanded="false"
+              data-experience-video="./assets/yonyou-experience.mp4"
+              data-experience-title="YONYOU / VIDEO"
+            >
+              <header>
+                <h3>用友网络科技股份有限公司</h3>
+                <time>2024.12-2025.3</time>
+              </header>
+              <ul>
+                <li>智石开项目系统组件迭代修改、产品大会所有物料设计，并与印刷厂对接</li>
+                <li>公众号运营、PPT设计规范</li>
+              </ul>
+            </article>
+            <article
+              class="about-experience-item about-experience-item--interactive"
+              role="button"
+              tabindex="0"
+              aria-controls="experience-video-panel"
+              aria-expanded="false"
+              data-experience-videos="./assets/drink-packaging-01.mp4,./assets/drink-packaging-02.mp4"
+              data-experience-title="DRINK PACKAGING / VIDEO"
+            >
+              <header>
+                <h3>饮品包装设计</h3>
+                <time>兼职</time>
+              </header>
+              <ul>
+                <li>饮品包装视觉设计，支持工厂生产落地</li>
+                <li>成品供货超市渠道展示与销售</li>
+              </ul>
+            </article>
+            <article class="about-experience-item">
+              <header>
+                <h3>天津工业大学艺术学院媒体责编</h3>
+                <time>2023.6-2024.6</time>
+              </header>
+              <ul>
+                <li>负责学院唯一官方公众号运营，公众号管理并撰写推文，总阅览量3万+</li>
+                <li>整合学院资源统一为融媒体中心</li>
+                <li>产出特色专栏“来点不一young”广受好评</li>
+                <li>打造“繁星志愿者”品牌，组织多次传统文化走进乡村社区</li>
+              </ul>
+            </article>
           </div>
           <div class="about-tool-groups" aria-label="软件图标分类">
             <section class="about-tool-group">
@@ -115,6 +185,28 @@
             </section>
           </div>
         </div>
+        <aside class="experience-video-panel" id="experience-video-panel" aria-hidden="true" aria-label="经历项目视频">
+          <div class="experience-video-panel__hud">
+            <span>DIDI SAFETY / VIDEO</span>
+            <button class="experience-video-panel__close" type="button" aria-label="关闭视频">×</button>
+          </div>
+          <video
+            class="experience-video-panel__video"
+            src="./assets/didi-safety-experience.mp4"
+            preload="metadata"
+            controls
+            playsinline
+            data-manual-video
+          ></video>
+          <video
+            class="experience-video-panel__video"
+            preload="metadata"
+            controls
+            playsinline
+            hidden
+            data-manual-video
+          ></video>
+        </aside>
       </section>
 
       <div class="floor-slice" aria-hidden="true">
