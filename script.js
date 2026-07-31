@@ -61,6 +61,9 @@ const progressCurrent = document.querySelector(".progress-current");
 const progressBar = document.querySelector(".progress-line i");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const projectModal = document.getElementById("projectModal");
+const experienceVideoModal = document.getElementById("experienceVideoModal");
+const experienceVideoTrigger = document.getElementById("experienceVideoTrigger");
+const experienceVideo = document.getElementById("experienceVideo");
 const pdfStage = document.getElementById("pdfStage");
 const projectScroll = document.getElementById("projectScroll");
 const projectImage = document.getElementById("projectImage");
@@ -83,6 +86,23 @@ let touchStartX = 0;
 let activePdfIndex = 0;
 let activeProjects = uiuxProjects;
 let lastProjectTrigger = null;
+
+function hasOpenModal() {
+  return projectModal.open || experienceVideoModal.open;
+}
+
+function openExperienceVideo() {
+  experienceVideoModal.showModal();
+  document.getElementById("closeExperienceVideo").focus();
+  experienceVideo.play().catch(() => { /* controls remain available if autoplay is blocked */ });
+}
+
+function closeExperienceVideo() {
+  experienceVideo.pause();
+  experienceVideo.currentTime = 0;
+  experienceVideoModal.close();
+  requestAnimationFrame(() => experienceVideoTrigger.focus());
+}
 
 function renderProfile() {
   document.querySelectorAll("[data-profile-name]").forEach((node) => { node.textContent = profile.name; });
@@ -235,7 +255,7 @@ function goToScene(nextScene, { animate = true } = {}) {
 }
 
 function handleWheel(event) {
-  if (projectModal.open) return;
+  if (hasOpenModal()) return;
   const carousel = event.target.closest(".carousel");
   if (activeScene === scenes.length - 1 && carousel) {
     event.preventDefault();
@@ -250,6 +270,13 @@ function handleWheel(event) {
 }
 
 function handleKey(event) {
+  if (experienceVideoModal.open) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeExperienceVideo();
+    }
+    return;
+  }
   if (projectModal.open) {
     if (event.key === "Escape") {
       event.preventDefault();
@@ -359,6 +386,15 @@ renderProjects(brandProjects, "brandTrack", true);
 syncProjectMedia(false);
 document.querySelectorAll(".project-row").forEach(setupCarousel);
 badgeTrigger.addEventListener("click", dropIdentityBadge);
+experienceVideoTrigger.addEventListener("click", openExperienceVideo);
+document.getElementById("closeExperienceVideo").addEventListener("click", closeExperienceVideo);
+experienceVideoModal.addEventListener("cancel", (event) => {
+  event.preventDefault();
+  closeExperienceVideo();
+});
+experienceVideoModal.addEventListener("click", (event) => {
+  if (event.target === experienceVideoModal) closeExperienceVideo();
+});
 
 document.getElementById("uiuxTrack").addEventListener("click", (event) => {
   const card = event.target.closest("[data-pdf-index]");
@@ -407,6 +443,7 @@ window.addEventListener("touchstart", (event) => {
 }, { passive: true });
 
 window.addEventListener("touchend", (event) => {
+  if (hasOpenModal()) return;
   if (event.target.closest(".carousel")) return;
   const dx = event.changedTouches[0].clientX - touchStartX;
   const dy = event.changedTouches[0].clientY - touchStartY;

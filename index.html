@@ -6,7 +6,7 @@
   <meta name="description" content="滚动叙事型个人设计作品集">
   <title>YanTing — Portfolio</title>
   <link rel="preload" href="assets/scene-01.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles.css?v=20260731-8">
+  <link rel="stylesheet" href="styles.css?v=20260731-10">
 </head>
 <body>
   <main class="story" aria-label="个人设计作品集">
@@ -69,8 +69,11 @@
       <article class="experience-copy reveal-group" id="experienceA"></article>
     </section>
 
-    <section class="scene scene-experience scene-experience-b" data-scene="3" aria-label="设计经历二" aria-hidden="true">
+    <section class="scene scene-experience scene-experience-b" data-scene="3" aria-label="用友网络科技设计经历，可点击播放项目视频" aria-hidden="true">
       <article class="experience-copy reveal-group" id="experienceB"></article>
+      <button class="experience-video-trigger" id="experienceVideoTrigger" type="button" aria-haspopup="dialog" aria-controls="experienceVideoModal" aria-label="播放用友项目回顾视频">
+        <span class="experience-video-cta" aria-hidden="true"><i>▶</i><span>播放项目回顾</span></span>
+      </button>
     </section>
 
     <section class="scene scene-work" data-scene="4" aria-label="作品展示" aria-hidden="true">
@@ -135,7 +138,25 @@
     </div>
   </dialog>
 
+  <dialog class="experience-modal" id="experienceVideoModal" aria-labelledby="experienceVideoTitle">
+    <div class="experience-modal-shell">
+      <header class="experience-modal-header">
+        <div class="experience-modal-heading">
+          <span class="experience-modal-category">EXPERIENCE FILM</span>
+          <h2 id="experienceVideoTitle">用友 · 项目回顾</h2>
+        </div>
+        <button class="modal-close" id="closeExperienceVideo" type="button" aria-label="关闭项目视频">×</button>
+      </header>
+      <div class="experience-video-stage">
+        <video id="experienceVideo" controls playsinline preload="metadata" poster="assets/scene-04.webp">
+          <source src="assets/yonyou-experience.mp4" type="video/mp4">
+          你的浏览器暂不支持视频播放。
+        </video>
+      </div>
+    </div>
+  </dialog>
+
   <noscript><p class="noscript">请启用 JavaScript 以浏览滚动叙事和作品轮播。</p></noscript>
-  <script src="script.js?v=20260731-9"></script>
+  <script src="script.js?v=20260731-10"></script>
 </body>
 </html>
