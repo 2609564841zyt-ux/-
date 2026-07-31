@@ -32,11 +32,11 @@ const uiuxProjects = [
 const brandProjects = [
   { title: "有龍", category: "BRAND", year: "PDF", summary: "东方龙文化品牌视觉识别系统", media: "assets/project-covers/brand-youlong.mp4", mediaType: "video", poster: "assets/project-covers/brand-youlong.jpg", pdf: "assets/projects/brand-youlong.pdf", preview: "assets/projects/brand-youlong.jpg" },
   { title: "八仙新年", category: "BRAND", year: "PDF", summary: "八仙送福新年礼盒与包装视觉设计", media: "assets/project-covers/brand-baxian.mp4", mediaType: "video", poster: "assets/project-covers/brand-baxian.jpg", pdf: "assets/projects/brand-baxian.pdf", preview: "assets/projects/brand-baxian.jpg" },
-  { title: "黔程锦绣", category: "BRAND", year: "PDF", summary: "贵州苗绣文化视觉识别与文创系统", media: "assets/project-covers/brand-qian.jpg", mediaType: "image", pdf: "assets/projects/brand-qian.pdf", preview: "assets/projects/brand-qian.jpg" },
-  { title: "植得 Merit", category: "BRAND", year: "PDF", summary: "植物营养品牌策略与包装视觉设计", media: "assets/project-covers/brand-merit.jpg", mediaType: "image", pdf: "assets/projects/brand-merit.pdf", preview: "assets/projects/brand-merit.jpg" },
-  { title: "粉韵", category: "BRAND", year: "PDF", summary: "传统陶瓷粉彩装饰书籍与文创设计", media: "assets/project-covers/brand-fenyun.jpg", mediaType: "image", pdf: "assets/projects/brand-fenyun.pdf", preview: "assets/projects/brand-fenyun.jpg" },
-  { title: "桃花姬", category: "BRAND", year: "PDF", summary: "阿胶糕礼盒包装与系列插画设计", media: "assets/project-covers/brand-taohuaji.jpg", mediaType: "image", pdf: "assets/projects/brand-taohuaji.pdf", preview: "assets/projects/brand-taohuaji.jpg" },
-  { title: "江中健胃消食片", category: "BRAND", year: "PDF", summary: "健胃消食产品包装与周边礼盒设计", media: "assets/project-covers/brand-jiangzhong.jpg", mediaType: "image", pdf: "assets/projects/brand-jiangzhong.pdf", preview: "assets/projects/brand-jiangzhong.jpg" }
+  { title: "黔程锦绣", category: "BRAND", year: "PDF", summary: "贵州苗绣文化视觉识别与文创系统", media: "assets/project-covers/brand-qian.mp4", mediaType: "video", poster: "assets/project-covers/brand-qian.jpg", pdf: "assets/projects/brand-qian.pdf", preview: "assets/projects/brand-qian.jpg" },
+  { title: "植得 Merit", category: "BRAND", year: "PDF", summary: "植物营养品牌策略与包装视觉设计", media: "assets/project-covers/brand-merit.mp4", mediaType: "video", poster: "assets/project-covers/brand-merit.jpg", pdf: "assets/projects/brand-merit.pdf", preview: "assets/projects/brand-merit.jpg" },
+  { title: "粉韵", category: "BRAND", year: "PDF", summary: "传统陶瓷粉彩装饰书籍与文创设计", media: "assets/project-covers/brand-fenyun.mp4", mediaType: "video", poster: "assets/project-covers/brand-fenyun.jpg", pdf: "assets/projects/brand-fenyun.pdf", preview: "assets/projects/brand-fenyun.jpg" },
+  { title: "桃花姬", category: "BRAND", year: "PDF", summary: "阿胶糕礼盒包装与系列插画设计", media: "assets/project-covers/brand-taohuaji.mp4", mediaType: "video", poster: "assets/project-covers/brand-taohuaji.jpg", pdf: "assets/projects/brand-taohuaji.pdf", preview: "assets/projects/brand-taohuaji.jpg" },
+  { title: "江中健胃消食片", category: "BRAND", year: "PDF", summary: "健胃消食产品包装与周边礼盒设计", media: "assets/project-covers/brand-jiangzhong.mp4", mediaType: "video", poster: "assets/project-covers/brand-jiangzhong.jpg", pdf: "assets/projects/brand-jiangzhong.pdf", preview: "assets/projects/brand-jiangzhong.jpg" }
 ];
 
 const sceneNames = ["首页", "教育经历", "设计经历一", "设计经历二", "作品展示"];
