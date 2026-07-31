@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="滚动叙事型个人设计作品集">
+  <title>YanTing — Portfolio</title>
+  <link rel="preload" href="assets/scene-01.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="styles.css?v=20260731-8">
+</head>
+<body>
+  <main class="story" aria-label="个人设计作品集">
+    <div class="media-layer" aria-hidden="true">
+      <video id="storyVideo" muted playsinline preload="auto" poster="assets/scene-01.webp">
+        <source src="assets/scroll-background.mp4" type="video/mp4">
+      </video>
+      <div id="stillFrame" class="still-frame"></div>
+      <div id="sceneShade" class="scene-shade"></div>
+    </div>
+
+    <section class="scene scene-hero is-active" data-scene="0" aria-label="首页">
+      <div class="services reveal-group" aria-label="设计领域">
+        <span>UI/UX</span>
+        <span>品牌</span>
+        <span>包装</span>
+        <span>IP</span>
+      </div>
+      <h1 class="hero-name reveal-line">
+        <button class="hero-name-trigger" id="badgeTrigger" type="button" aria-controls="identityBadge" aria-expanded="false">
+          <span data-hero-name>YanTing</span><span class="name-action" aria-hidden="true">↘</span>
+        </button>
+      </h1>
+      <aside class="identity-badge" id="identityBadge" aria-label="设计师微信联系工牌">
+        <div class="badge-lanyard" aria-hidden="true"><i></i><i></i></div>
+        <div class="badge-hardware" aria-hidden="true"><span></span></div>
+        <div class="badge-card">
+          <header class="badge-card-header">
+            <span class="badge-monogram" aria-hidden="true">＋</span>
+            <span>PORTFOLIO<br>2026</span>
+          </header>
+          <div class="badge-contact">
+            <strong>添加微信联系我</strong>
+            <span>SCAN TO CONNECT</span>
+          </div>
+          <div class="badge-qr">
+            <img src="assets/wechat-qr.jpg" alt="添加微信联系我的二维码" decoding="async">
+          </div>
+          <footer class="badge-card-footer">
+            <span>WECHAT · 微信</span>
+            <span>ID 025</span>
+          </footer>
+        </div>
+      </aside>
+      <p id="badgeStatus" class="sr-only" aria-live="polite"></p>
+    </section>
+
+    <section class="scene scene-education" data-scene="1" aria-label="教育经历" aria-hidden="true">
+      <h2 class="small-name reveal-line" data-profile-name>YanTing</h2>
+      <div class="education-copy reveal-group" id="educationCopy"></div>
+      <div class="services services-secondary reveal-group" aria-label="设计领域">
+        <span>UI/UX</span>
+        <span>品牌</span>
+        <span>包装</span>
+        <span>IP</span>
+      </div>
+    </section>
+
+    <section class="scene scene-experience" data-scene="2" aria-label="设计经历一" aria-hidden="true">
+      <article class="experience-copy reveal-group" id="experienceA"></article>
+    </section>
+
+    <section class="scene scene-experience scene-experience-b" data-scene="3" aria-label="设计经历二" aria-hidden="true">
+      <article class="experience-copy reveal-group" id="experienceB"></article>
+    </section>
+
+    <section class="scene scene-work" data-scene="4" aria-label="作品展示" aria-hidden="true">
+      <div class="work-stack">
+        <section class="project-row" data-carousel="uiux" aria-labelledby="uiuxTitle">
+          <div class="row-heading">
+            <h2 id="uiuxTitle">UI/UX设计</h2>
+            <div class="carousel-controls">
+              <button type="button" class="carousel-arrow" data-direction="prev" aria-label="查看上一组 UI/UX 作品">←</button>
+              <button type="button" class="carousel-arrow" data-direction="next" aria-label="查看下一组 UI/UX 作品">→</button>
+            </div>
+          </div>
+          <div class="carousel" tabindex="0" role="region" aria-label="UI/UX 作品轮播">
+            <div class="carousel-track" id="uiuxTrack"></div>
+          </div>
+        </section>
+
+        <section class="project-row" data-carousel="brand" aria-labelledby="brandTitle">
+          <div class="row-heading">
+            <h2 id="brandTitle">品牌设计</h2>
+            <div class="carousel-controls">
+              <button type="button" class="carousel-arrow" data-direction="prev" aria-label="查看上一组品牌作品">←</button>
+              <button type="button" class="carousel-arrow" data-direction="next" aria-label="查看下一组品牌作品">→</button>
+            </div>
+          </div>
+          <div class="carousel" tabindex="0" role="region" aria-label="品牌设计作品轮播">
+            <div class="carousel-track" id="brandTrack"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <div class="scene-progress" aria-hidden="true">
+      <span class="progress-current">01</span>
+      <span class="progress-line"><i></i></span>
+      <span>05</span>
+    </div>
+    <p id="sceneStatus" class="sr-only" aria-live="polite">第 1 屏，共 5 屏：首页</p>
+  </main>
+
+  <dialog class="project-modal" id="projectModal" aria-labelledby="modalProjectTitle">
+    <div class="modal-shell">
+      <header class="modal-header">
+        <div class="modal-heading">
+          <span class="modal-category">PROJECT CASE</span>
+          <h2 id="modalProjectTitle">PROJECT 01</h2>
+          <span class="modal-counter" id="modalCounter">01 / 04</span>
+        </div>
+        <div class="modal-actions">
+          <a class="modal-action" id="openPdfLink" href="#" target="_blank" rel="noopener">新窗口打开 ↗</a>
+          <button class="modal-close" id="closeProjectModal" type="button" aria-label="关闭项目预览">×</button>
+        </div>
+      </header>
+      <div class="pdf-stage is-loading" id="pdfStage">
+        <div class="project-scroll" id="projectScroll" tabindex="0" aria-label="项目长图浏览区域">
+          <img id="projectImage" alt="" decoding="async">
+        </div>
+        <p class="image-loading" id="imageLoading">作品加载中…</p>
+        <button class="modal-nav modal-prev" id="previousPdf" type="button" aria-label="上一个项目">←</button>
+        <button class="modal-nav modal-next" id="nextPdf" type="button" aria-label="下一个项目">→</button>
+      </div>
+    </div>
+  </dialog>
+
+  <noscript><p class="noscript">请启用 JavaScript 以浏览滚动叙事和作品轮播。</p></noscript>
+  <script src="script.js?v=20260731-9"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+本地打开方式
+
+1. 直接双击 index.html，即可使用浏览器打开。
+2. 如果浏览器限制本地视频，可在本文件夹启动任意静态文件服务器，再访问 index.html。
+
+内容修改
+
+- 姓名、教育经历、设计经历：编辑 script.js 顶部的 profile。
+- UI/UX 和品牌项目：编辑 script.js 顶部的 uiuxProjects 与 brandProjects。
+- 背景视频：assets/scroll-background.mp4。
+
+交互方式
+
+- 首页点击 YanTing：工牌从页面上方落下，再次点击可重播动效。
+- 鼠标滚轮、方向键、Page Up / Page Down：切换五个画面。
+- 最后一屏将鼠标放在轮播上滚动，或使用拖拽、箭头按钮与左右方向键浏览作品。
+- 手机端上下滑动切换画面，横向滑动浏览作品。

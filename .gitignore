@@ -1,0 +1,12 @@
+node_modules/
+.pnpm-store/
+.impeccable/
+dist/
+.next/
+.wrangler/
+tmp/
+public/assets/
+public/portfolio.html
+public/styles.css
+public/script.js
+*.tgz
