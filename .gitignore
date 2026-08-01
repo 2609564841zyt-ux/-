@@ -6,6 +6,7 @@ dist/
 .wrangler/
 tmp/
 public/assets/
+public/index.html
 public/portfolio.html
 public/styles.css
 public/script.js
