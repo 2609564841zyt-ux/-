@@ -1,36 +1,311 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="滚动叙事型个人设计作品集">
-  <title>YanTing — Portfolio</title>
-  <link rel="preload" href="assets/scene-01.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="styles.css?v=20260731-10">
-</head>
-<body>
-  <main class="story" aria-label="个人设计作品集">
-    <div class="media-layer" aria-hidden="true">
-      <video id="storyVideo" muted playsinline preload="auto" poster="assets/scene-01.webp">
-        <source src="assets/scroll-background.mp4" type="video/mp4">
-      </video>
-      <div id="stillFrame" class="still-frame"></div>
-      <div id="sceneShade" class="scene-shade"></div>
-    </div>
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YanTing · Personal Portfolio</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:"PingFang SC","Microsoft YaHei",Arial,sans-serif;color:#222;background:#e6e6e4}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid #5972a4;outline-offset:6px}button{border:0;background:none}button:disabled{cursor:wait}h1,h2,p{margin:0}button,a{touch-action:manipulation}body{--z-badge:55}#home{position:fixed;inset:0;overflow:hidden;background:#dededc}.scene{position:absolute;left:50%;top:50%;width:max(100vw,177.7778vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%)}.scene video{width:100%;height:100%;object-fit:cover}.masthead{position:fixed;left:4vw;top:4vh;z-index:12}.name{font-size:clamp(30px,5.5vw,88px);font-weight:800;letter-spacing:-.07em;padding:0;line-height:1}.name small{display:inline-block;font-size:20px;vertical-align:top;margin:8px;letter-spacing:0}.fields{margin-top:20px;font-size:12px;letter-spacing:.15em}.hotspot{position:absolute;display:grid;place-items:center;border-radius:20px}.hotspot:after{content:attr(data-label);font-size:14px;background:#242424;color:white;padding:10px 19px;border-radius:30px;box-shadow:0 4px 20px #0002;opacity:0;transform:translateY(10px);transition:.25s;white-space:nowrap}.hotspot:hover:after,.hotspot:focus-visible:after{opacity:1;transform:translateY(0)}.hotspot:hover{background:#ffffff0a;box-shadow:inset 0 0 0 1px #ffffff5a}.books{left:13%;top:72%;width:19%;height:18%}.computer{left:40%;top:57%;width:20%;height:22%}.wall{left:60%;top:6%;width:37%;height:40%}.trophy{left:75%;top:53%;width:18%;height:36%}.home-bottom{position:fixed;left:4vw;right:4vw;bottom:26px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.15em;z-index:10}.home-bottom button{font-size:12px;padding:8px}.quicknav{display:none}#transition{position:fixed;inset:0;z-index:30;background:#ddd;opacity:0;pointer-events:none;transition:opacity .3s}#transition.active{opacity:1;pointer-events:auto}#transition video{width:100%;height:100%;object-fit:cover}#skip{position:absolute;right:30px;bottom:28px;background:#fff9;border-radius:30px;padding:10px 20px}#page{position:fixed;inset:0;background:#f6f5f1;z-index:40;overflow-y:auto;visibility:hidden;opacity:0;transition:opacity .4s}#page.active{visibility:visible;opacity:1}.page-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:23px 4vw;background:inherit;z-index:10;border-bottom:1px solid #8883}.page-head button{font-size:13px}.page-brand{font-size:22px;font-weight:800;letter-spacing:-1px}.section{max-width:1120px;margin:auto;padding:70px 48px 100px}.eyebrow{text-transform:uppercase;font-size:11px;letter-spacing:.18em;color:#888}.section h1{font-size:clamp(40px,6vw,80px);letter-spacing:-.055em;margin:12px 0 60px;font-weight:500}.entry{display:grid;grid-template-columns:150px 1fr;gap:36px;padding:30px 0;border-top:1px solid #ccc}.entry time{color:#898989;font-size:14px}.entry h2{font-size:21px;line-height:1.6;font-weight:500}.entry p{font-size:15px;line-height:1.95;color:#777;margin-top:12px}.entry strong{font-weight:500;color:#222}.award-intro{font-size:25px;line-height:1.6;margin-bottom:45px}.award-intro b{font-size:80px;font-weight:400;margin-right:8px}.award-row{padding:26px 0;border-top:1px solid #ccc;font-size:19px;line-height:1.8}.award-row span{font-size:12px;color:#888;display:block;letter-spacing:.12em}.education{margin-top:90px}.education h2{font-size:24px;margin-bottom:30px}#page.dark{background:#151515;color:#eee}.dark .page-head{background:#151515}.work-title{padding:30px 5vw 0;display:flex;justify-content:space-between;align-items:end}.work-title h1{font-size:clamp(30px,4vw,56px);font-weight:400;letter-spacing:-.04em}.filters{display:flex;gap:8px}.filters button{padding:8px 18px;border-radius:30px;color:#999;border:1px solid #383838}.filters .selected{color:#181818;background:#eee;border-color:#eee}.carousel{position:relative;height:min(57vh,570px);min-height:330px;overflow:hidden;touch-action:pan-y;margin-top:15px;perspective:1400px}.work-card{position:absolute;left:50%;top:50%;width:min(62vw,900px);aspect-ratio:16/10;padding:0;background:#292929;border:1px solid #fff2;border-radius:12px;overflow:hidden;box-shadow:0 25px 55px #0007;transition:transform .65s cubic-bezier(.22,.8,.2,1),opacity .65s,filter .65s;transform-style:preserve-3d}.work-card img,.work-card video{width:100%;height:100%;object-fit:contain;background:#202020;display:block}.work-card:not(.current){filter:brightness(.64)}.work-card.current:hover{border-color:#ffffff80}.work-caption{text-align:center;min-height:86px;padding:10px 25px}.work-caption h2{font-size:23px;font-weight:400}.work-caption p{font-size:12px;color:#888;margin-top:10px}.work-controls{display:flex;justify-content:center;align-items:center;gap:30px;padding:12px 0 25px}.work-controls button{width:42px;height:42px;border:1px solid #555;border-radius:50%;color:#eee}.work-controls span{font-size:11px;letter-spacing:.13em;color:#999}.work-footer{text-align:center;font-size:11px;color:#666;padding:15px}.details{border:0;padding:0;width:min(1200px,96vw);height:93vh;background:#eee;max-height:95vh;border-radius:10px}.details::backdrop{background:#000b}.detail-head{position:sticky;top:0;background:#efefef;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;z-index:2;gap:20px}.detail-head h2{font-size:16px}.detail-head button{font-size:25px}.details img{width:100%;display:block}.details iframe{display:block;width:100%;height:calc(93vh - 58px);border:0;background:#fff}.closebadge{position:absolute;right:0;top:0;opacity:0;pointer-events:auto}.identity-badge.is-dropped{pointer-events:auto}.identity-badge:hover .closebadge{opacity:1}.identity-badge{z-index:55}#autoplayHint{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;padding:15px 25px;border-radius:30px;z-index:11;display:none}@media(max-width:700px){.masthead{left:24px;top:25px}.name{font-size:45px}.fields{font-size:10px;margin-top:13px}.quicknav{display:flex;gap:6px;position:fixed;bottom:80px;left:16px;right:16px;justify-content:center;z-index:11}.quicknav button{padding:9px 12px;background:#ffffffdc;border-radius:30px;font-size:12px}.home-bottom{bottom:22px;left:24px;right:24px;font-size:9px}.home-bottom>span{max-width:130px;line-height:1.8}.section{padding:40px 24px 80px}.section h1{margin-bottom:35px}.entry{grid-template-columns:1fr;gap:10px;padding:24px 0}.entry h2{font-size:18px}.entry p{font-size:14px}.work-title{display:block;padding:30px 24px 0}.filters{margin-top:22px}.filters button{padding:7px 13px}.carousel{height:48vh;min-height:260px}.work-card{width:82vw}.work-caption h2{font-size:19px}.award-intro{font-size:19px}.award-intro b{font-size:64px}.award-row{font-size:17px}.identity-badge{width:178px;right:20px}.badge-card{min-height:240px}.badge-lanyard{height:90px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.work-card,#page{transition:none}.identity-badge.is-dropped{animation-duration:1ms}}
+.identity-badge {
+  position: fixed;
+  z-index: var(--z-badge);
+  top: 0;
+  right: clamp(34px, 5.4vw, 88px);
+  width: clamp(164px, 13.5vw, 208px);
+  color: #171313;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 24px));
+  transform-origin: 50% 0;
+  will-change: transform;
+}
 
-    <section class="scene scene-hero is-active" data-scene="0" aria-label="首页">
-      <div class="services reveal-group" aria-label="设计领域">
-        <span>UI/UX</span>
-        <span>品牌</span>
-        <span>包装</span>
-        <span>IP</span>
-      </div>
-      <h1 class="hero-name reveal-line">
-        <button class="hero-name-trigger" id="badgeTrigger" type="button" aria-controls="identityBadge" aria-expanded="false">
-          <span data-hero-name>YanTing</span><span class="name-action" aria-hidden="true">↘</span>
-        </button>
-      </h1>
-      <aside class="identity-badge" id="identityBadge" aria-label="设计师微信联系工牌">
+.identity-badge.is-dropped {
+  animation: badge-drop 940ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+.badge-lanyard {
+  position: relative;
+  width: 38px;
+  height: clamp(94px, 16vh, 148px);
+  margin: 0 auto;
+}
+
+.badge-lanyard i {
+  position: absolute;
+  top: -12px;
+  bottom: 0;
+  width: 9px;
+  background: #171313;
+}
+
+.badge-lanyard i:first-child {
+  left: 7px;
+  transform: rotate(-5deg);
+  transform-origin: top;
+}
+
+.badge-lanyard i:last-child {
+  right: 7px;
+  transform: rotate(5deg);
+  transform-origin: top;
+}
+
+.badge-hardware {
+  position: relative;
+  z-index: 2;
+  width: 38px;
+  height: 30px;
+  margin: -4px auto -7px;
+  border-radius: 5px 5px 9px 9px;
+  background: #a6a5a2;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18);
+}
+
+.badge-hardware::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 14px;
+  height: 7px;
+  border: 2px solid #5d5c59;
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.badge-hardware span {
+  position: absolute;
+  inset: auto 8px -7px;
+  height: 10px;
+  border-radius: 0 0 5px 5px;
+  background: #787774;
+}
+
+.badge-card {
+  position: relative;
+  min-height: clamp(220px, 27vh, 278px);
+  padding: clamp(15px, 1.3vw, 20px);
+  overflow: hidden;
+  border-radius: 11px;
+  background: #efefed;
+  box-shadow: 0 8px 8px rgba(17, 13, 13, .22);
+  transform-origin: 50% -8px;
+}
+
+.identity-badge.is-dropped .badge-card {
+  animation: badge-sway 1100ms 260ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.badge-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42%;
+  height: 8px;
+  background: #171313;
+}
+
+.badge-card-header,
+.badge-card-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: clamp(.52rem, .55vw, .66rem);
+  font-weight: 750;
+  line-height: 1.24;
+}
+
+.badge-card-header > :last-child { text-align: right; }
+
+.badge-monogram {
+  font-family: "Futura LT ExtraBold", "Arial Black", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.35rem);
+  letter-spacing: -.04em;
+  line-height: .9;
+}
+
+.badge-contact {
+  position: absolute;
+  top: 30%;
+  right: 14px;
+  left: 14px;
+  text-align: center;
+}
+
+.badge-contact strong {
+  display: block;
+  margin-bottom: .4em;
+  font-size: clamp(.9rem, 1.1vw, 1.08rem);
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge-contact span {
+  display: block;
+  font-size: clamp(.48rem, .52vw, .6rem);
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.2;
+}
+
+.badge-qr {
+  position: absolute;
+  right: auto;
+  bottom: clamp(48px, 5.4vh, 56px);
+  left: 50%;
+  width: clamp(64px, 5.8vw, 84px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #fff;
+  transform: translateX(-50%);
+}
+
+.badge-qr img {
+  position: absolute;
+  top: -44.5%;
+  left: -18.5%;
+  display: block;
+  width: 136.9%;
+  max-width: none;
+  height: auto;
+}
+
+.badge-card-footer {
+  position: absolute;
+  right: clamp(15px, 1.3vw, 20px);
+  bottom: clamp(14px, 1.2vw, 18px);
+  left: clamp(15px, 1.3vw, 20px);
+  align-items: flex-end;
+  padding-top: 9px;
+  border-top: 1px solid rgba(23, 19, 19, .28);
+}
+
+@keyframes badge-drop {
+  from { transform: translateY(calc(-100% - 24px)); }
+  to { transform: translateY(0); }
+}
+
+@keyframes badge-sway {
+  0% { transform: rotate(-5deg); }
+  56% { transform: rotate(1.8deg); }
+  100% { transform: rotate(0); }
+}
+
+
+/* Keep each project detail in a single display channel. */
+.details [hidden]{display:none!important}
+.details{overflow-y:auto;scrollbar-width:none}
+.details::-webkit-scrollbar{display:none}
+.detail-head{display:none}
+.details iframe{height:93vh}
+.detail-interactive{background:#05070b}
+.detail-interactive video{display:block;width:100%;height:auto;background:#000}
+.detail-interactive iframe{display:block;width:100%;height:100vh;border:0;background:#05070b}
+.yiq-detail{background:#f4f3f1;color:#222;padding:clamp(24px,4vw,64px)}
+.yiq-demo{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:24px;align-items:start}
+.yiq-demo iframe{display:block;width:100%;min-height:900px;border:0;background:#fff;overflow:hidden}
+.yiq-qr{position:sticky;top:24px;padding:14px;background:#fff;border-radius:12px;text-align:center}
+.yiq-qr-trigger{display:block;width:100%;padding:0;border:0;background:none}
+.yiq-qr-box{width:96px;aspect-ratio:1;margin:auto;display:grid;place-items:center;background:#f0f0ee;color:#666;font-size:11px;border:1px dashed #aaa}
+.yiq-qr-image{display:block;width:96px;height:auto;margin:auto}
+.yiq-qr h2{margin:12px 0 6px;font-size:16px}.yiq-qr p{font-size:11px;line-height:1.55;color:#555}
+.yiq-qr-popup{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:24px;background:#000b}
+.yiq-qr-popup-inner{width:min(420px,88vw);padding:24px;background:#fff;text-align:center;border-radius:12px}
+.yiq-qr-popup .yiq-qr-box{width:min(320px,70vw);font-size:16px}.yiq-qr-popup p{margin-top:16px;color:#555}
+.yiq-qr-popup .yiq-qr-image{width:min(320px,70vw)}
+.yiq-proof{padding-top:clamp(64px,10vw,130px)}
+.yiq-role{max-width:900px;font-size:clamp(30px,4.8vw,70px);line-height:1.08;letter-spacing:-.035em;text-wrap:balance}
+.yiq-role strong{color:#247256;font-weight:600}
+.yiq-proof-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:56px;align-items:start}
+.yiq-proof figure{margin:0}.yiq-proof img{width:100%;height:auto;display:block}.yiq-proof figcaption{padding:14px 2px 28px;font-size:15px;line-height:1.65;color:#444}
+.yiq-cop31{max-width:850px;margin:40px 0 20px;font-size:clamp(24px,3vw,42px);line-height:1.3;text-wrap:balance}
+.yiq-videos{padding-top:clamp(70px,10vw,130px)}
+.yiq-videos h2{margin:0 0 32px;font-size:clamp(28px,4vw,54px);font-weight:500;letter-spacing:-.03em}
+.yiq-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.yiq-video-grid video{display:block;width:100%;max-height:72vh;background:#111;object-fit:contain}
+@media(max-width:800px){.yiq-demo{grid-template-columns:1fr}.yiq-qr{position:static;display:grid;grid-template-columns:100px 1fr;gap:14px;text-align:left;align-items:center}.yiq-qr h2{margin:0 0 6px}.yiq-proof-grid,.yiq-video-grid{grid-template-columns:1fr}.yiq-video-grid video{max-height:none}}
+.entry[data-experience-video]{cursor:pointer;transition:background .25s,padding .25s}
+.entry[data-experience-video]:hover,.entry[data-experience-video]:focus-visible{background:#fff;padding-left:18px;padding-right:18px;outline:none}
+.entry[data-experience-video] h2:after{content:'  播放项目视频 ↗';font-size:12px;color:#888;white-space:nowrap}
+/* v11: reference wordmark, upper-left badge and experience transition */
+.name{font-family:"Futura LT ExtraBold","Arial Black","Helvetica Neue",sans-serif;font-weight:900;letter-spacing:-.035em;line-height:.92;color:#525660}
+.identity-badge{left:clamp(24px,4vw,76px);right:auto;transform-origin:50% 0}
+body.experience-open #page{background:#f4f3f1}
+body.experience-open .page-head{position:absolute;left:0;right:0;background:linear-gradient(#f4f3f1d9,transparent);border:0}
+.experience-board{position:relative;width:100%;height:100svh;background:#f4f3f1}
+.experience-board-media{position:absolute;left:50%;top:50%;width:min(100vw,177.68svh);aspect-ratio:1672/941;transform:translate(-50%,-50%)}
+.experience-board-media>img{width:100%;height:100%;object-fit:contain;display:block}
+.experience-hotspot{position:absolute;left:66.5%;top:18.5%;width:30%;height:35%;border-radius:18px;border:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s,transform .3s}
+.experience-hotspot:after{content:attr(data-label);position:absolute;right:8%;bottom:8%;padding:10px 16px;border-radius:24px;background:#fff;color:#222;font-size:12px;letter-spacing:.08em;opacity:0;transform:translateY(10px);transition:.3s;box-shadow:0 8px 25px #0002;white-space:nowrap}
+.experience-hotspot.ctrip{left:5%;top:10%;width:35%;height:55%}
+.experience-hotspot.didi{left:39.5%;top:11%;width:22%;height:44%}
+.experience-hotspot.yiq{left:53%;top:55%;width:38%;height:37%}
+.experience-hotspot:hover,.experience-hotspot:focus-visible{background:#ffffff18;border-color:#fff;box-shadow:0 0 0 5px #ffffff28,0 18px 45px #0002;transform:translateY(-3px);outline:none}
+.experience-hotspot:hover:after,.experience-hotspot:focus-visible:after{opacity:1;transform:translateY(0)}
+.experience-more{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:#ffffffe0;border:1px solid #ddd;border-radius:30px;padding:10px 20px;font-size:12px;color:#555}
+#experienceTransition{position:fixed;inset:0;z-index:45;background:#f4f3f1;opacity:0;visibility:hidden;transition:opacity .85s ease;pointer-events:none}
+#experienceTransition.active{opacity:1;visibility:visible;pointer-events:auto}
+#experienceTransition.leaving{opacity:0;pointer-events:none}
+#experienceFilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+#skipExperience{position:absolute;right:30px;bottom:28px;background:#ffffffb0;padding:10px 20px;border-radius:30px;font-size:12px}
+@media(max-width:700px){.identity-badge{left:24px;right:auto}.experience-board{height:100svh}.experience-hotspot:after{right:2%;bottom:2%;padding:7px 10px;font-size:9px}}
+
+/* Didi safety work — zoomable canvas */
+.didi-canvas{width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#111318;color:#fff;overflow:hidden}
+.didi-canvas::backdrop{background:#111318}
+.didi-canvas-shell{position:relative;width:100%;height:100%;overflow:hidden;touch-action:none;cursor:grab;user-select:none}
+.didi-canvas-shell.is-dragging{cursor:grabbing}
+.didi-canvas-stage{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.didi-canvas-stage img{display:block;width:auto;height:auto;max-width:none;pointer-events:none;-webkit-user-drag:none}
+.didi-canvas-toolbar{position:fixed;left:20px;right:20px;top:18px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;pointer-events:none}
+.didi-canvas-title{padding:10px 14px;background:#111318d9;color:#fff;font-size:13px;letter-spacing:.04em}
+.didi-canvas-actions{display:flex;align-items:center;gap:2px;background:#f7f7f5;color:#181818;padding:4px;box-shadow:0 4px 8px #0003;pointer-events:auto}
+.didi-canvas-actions button{min-width:40px;height:36px;padding:0 12px;font-size:13px}
+.didi-canvas-actions button:hover,.didi-canvas-actions button:focus-visible{background:#e6e6e2;outline-offset:2px}
+.didi-canvas-actions .didi-close{font-size:22px;border-left:1px solid #d4d4d0}
+.didi-canvas-zoom{min-width:56px;text-align:center;font-size:11px;font-variant-numeric:tabular-nums;color:#555}
+.didi-canvas-help{position:fixed;left:50%;bottom:18px;z-index:2;transform:translateX(-50%);padding:8px 12px;background:#111318d9;color:#ffffffb8;font-size:11px;letter-spacing:.04em;white-space:nowrap;pointer-events:none}
+@media(max-width:700px){.didi-canvas-toolbar{left:10px;right:10px;top:10px;align-items:flex-start}.didi-canvas-title{max-width:42vw;line-height:1.45}.didi-canvas-actions button{min-width:36px;padding:0 9px}.didi-canvas-actions [data-didi-fit]{display:none}.didi-canvas-help{bottom:10px;font-size:10px}}
+
+/* Portfolio Coverflow scene — v12 */
+#page.dark{position:fixed;inset:0;overflow:hidden;background:#080a10;color:#fff}
+#page.dark .page-head{display:none}
+#page.dark #content{height:100%;width:100%;overflow:hidden}
+.work-scene{position:absolute;inset:0;overflow:hidden;background:#080a10}
+.work-bg{position:absolute;left:50%;top:50%;width:max(100vw,177.7778vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%);object-fit:fill;display:block}
+.work-screen-shade{position:absolute;left:50%;top:50%;width:max(100vw,177.7778vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%);pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.42))}
+.work-screen-ui{position:absolute;left:50%;top:50%;width:max(100vw,177.7778vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%);pointer-events:none}
+.work-screen-ui>*{pointer-events:auto}
+.work-back{position:absolute;left:10.3%;top:15.5%;z-index:20;color:#ffffffc9;font-size:clamp(10px,.8vw,13px);padding:7px 12px;border:1px solid #ffffff35;border-radius:20px;background:#11182755;backdrop-filter:blur(12px)}
+.work-screen-ui .filters{position:absolute;left:11%;top:10%;transform:none;display:flex;gap:2px;padding:3px;border:1px solid #ffffff45;border-radius:30px;background:#10182775;backdrop-filter:blur(16px);box-shadow:0 8px 24px #0003;white-space:nowrap;max-width:calc(89% - 12px)}
+.work-screen-ui .filters button{min-width:84px;padding:8px 19px;border:0;border-radius:24px;color:#ffffffbd;font-size:clamp(11px,.95vw,15px);letter-spacing:.02em;transition:background .25s,color .25s,box-shadow .25s}
+.work-screen-ui .filters button.selected{background:#ffffff32;color:#fff;box-shadow:inset 0 0 0 1px #ffffff45,0 2px 12px #0003}
+.work-screen-ui .carousel{position:absolute;left:0;top:13%;width:100%;height:67%;min-height:0;margin:0;overflow:visible;perspective:1500px;touch-action:pan-y}
+.work-screen-ui .work-card{position:absolute;left:50%;top:48%;width:34%;max-height:78%;aspect-ratio:1.23;padding:0;background:#171923;border:1px solid #ffffff7a;border-radius:15px;overflow:hidden;box-shadow:0 22px 55px #0008,0 2px 12px #ffffff13;transition:transform .72s cubic-bezier(.2,.78,.18,1),opacity .55s,filter .55s,border-color .35s;transform-style:preserve-3d;cursor:pointer}
+.work-screen-ui .work-card img{width:100%;height:100%;object-fit:contain;background:#15171d;display:block}
+.work-screen-ui .work-card:not(.current){filter:brightness(.72) saturate(.82)}
+.work-screen-ui .work-card.current{border-color:#ffffffb5;box-shadow:0 28px 65px #0009,0 0 0 1px #ffffff20}
+.work-screen-ui .work-card.current:hover{border-color:#fff}
+.work-screen-ui .work-caption{position:absolute;left:50%;top:79.2%;transform:translateX(-50%);width:min(62%,720px);min-height:0;padding:14px 24px 16px;text-align:center;text-shadow:0 2px 12px #000b;border-radius:24px;background:linear-gradient(180deg,rgba(10,14,24,.38),rgba(10,14,24,.24));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 12px 32px #00000030,inset 0 0 0 1px #ffffff1e}
+.work-screen-ui .work-caption h2{font-size:clamp(15px,1.45vw,23px);font-weight:600;letter-spacing:.02em;color:#fff}
+.work-screen-ui .work-caption p{font-size:clamp(9px,.82vw,13px);color:#ffffffbd;margin-top:6px}
+.work-screen-ui .work-controls{position:absolute;left:50%;bottom:1.8%;transform:translateX(-50%);display:flex;justify-content:center;align-items:center;gap:16px;padding:0;color:#fff}
+.work-screen-ui .work-controls button{width:28px;height:28px;border:1px solid #ffffff55;border-radius:50%;color:#fff;background:#11182765;font-size:17px;line-height:1;backdrop-filter:blur(10px)}
+.work-screen-ui .work-controls span{font-size:10px;letter-spacing:.13em;color:#ffffffb8;min-width:44px;text-align:center}
+@media(max-width:700px){
+ .work-bg,.work-screen-shade,.work-screen-ui{width:max(100vw,177.7778vh);height:max(100vh,56.25vw)}
+ .work-back{left:9.8%;top:15%;font-size:10px;padding:6px 9px}
+ .work-screen-ui .filters{left:11%;top:10%;transform:none;max-width:78%}.work-screen-ui .filters button{min-width:58px;padding:7px 12px;font-size:11px}
+ .work-screen-ui .carousel{top:19%;height:58%}.work-screen-ui .work-card{width:38%;border-radius:9px;top:46%}
+ .work-screen-ui .work-caption{top:76.8%;left:50%;right:auto;transform:translateX(-50%);width:min(76%,420px);padding:11px 16px 13px;border-radius:18px}.work-screen-ui .work-caption h2{font-size:13px}.work-screen-ui .work-caption p{font-size:9px}
+ .work-screen-ui .work-controls{bottom:2%;gap:10px}.work-screen-ui .work-controls button{width:25px;height:25px}
+}
+@media(prefers-reduced-motion:reduce){.work-screen-ui .work-card{transition:none}}
+
+</style></head><body>
+<main id="home"><div class="scene" id="scene"><video id="background" autoplay muted loop playsinline poster="assets/embedded/01a54d5870aff234.jpg" src="assets/embedded/3def9cb567bf652e.mp4"></video><button class="hotspot books" data-route="research" data-label="教育背景 Education ↗" aria-label="书和眼镜：查看教育背景"></button><button class="hotspot computer" id="enterWork" data-label="作品 Portfolio ↗" aria-label="电脑：进入作品集"></button><button class="hotspot wall" data-route="experience" data-label="实践 Experience ↗" aria-label="照片墙：查看实践经历"></button><button class="hotspot trophy" data-route="awards" data-label="获奖 Awards ↗" aria-label="奖杯：查看获奖"></button></div>
+<header class="masthead"><button id="badgeTrigger" class="name" aria-controls="identityBadge" aria-expanded="false">YanTing<small>↘</small></button><p class="fields">UI/UX · BRAND · PACKAGING · IP</p></header>
+<nav class="quicknav" aria-label="首页栏目"><button data-route="research">教育背景</button><button id="mobileWork">作品集</button><button data-route="experience">实践经历</button><button data-route="awards">获奖</button></nav>
+<footer class="home-bottom"><span>EXPLORE THE OBJECTS</span><span><button id="pause">暂停背景 Ⅱ</button></span></footer><button id="autoplayHint">点击播放首页背景 ▷</button></main>
+<aside class="identity-badge" id="identityBadge" aria-label="设计师微信联系工牌">
         <div class="badge-lanyard" aria-hidden="true"><i></i><i></i></div>
         <div class="badge-hardware" aria-hidden="true"><span></span></div>
         <div class="badge-card">
@@ -43,7 +318,7 @@
             <span>SCAN TO CONNECT</span>
           </div>
           <div class="badge-qr">
-            <img src="assets/wechat-qr.jpg" alt="添加微信联系我的二维码" decoding="async">
+            <img src="assets/embedded/29fa0eb9341b9256.jpg" alt="添加微信联系我的二维码" decoding="async">
           </div>
           <footer class="badge-card-footer">
             <span>WECHAT · 微信</span>
@@ -51,112 +326,130 @@
           </footer>
         </div>
       </aside>
-      <p id="badgeStatus" class="sr-only" aria-live="polite"></p>
-    </section>
+<div id="transition"><video id="film" playsinline muted preload="auto" src="assets/embedded/ee69605fe1db0452.mp4"></video><button id="skip">跳过动画 ↗</button></div>
+<div id="experienceTransition" aria-hidden="true"><video id="experienceFilm" muted playsinline preload="auto" src="assets/embedded/6f8d0a10a89302b5.mp4"></video><button id="skipExperience">跳过动画 ↗</button></div><main id="page" aria-hidden="true"><header class="page-head"><button id="back">← 返回首页</button><span class="page-brand">YanTing</span><button id="contact">联系我 ↗</button></header><div id="content"></div></main>
+<dialog class="details" id="details"><header class="detail-head"><h2 id="detailTitle"></h2><button id="closeDetail" aria-label="关闭项目详情">×</button></header><iframe id="detailPdf" title="项目完整详情 PDF" loading="lazy" hidden></iframe><img id="detailImage" alt="项目完整展示" hidden><section class="detail-interactive" id="detailInteractive" hidden><video id="detailIntroVideo" muted playsinline controls></video><iframe id="detailInteractiveFrame" title="地球online交互体验" loading="lazy"></iframe></section><section class="yiq-detail" id="detailYiq" hidden><div class="yiq-demo"><iframe id="yiqFrame" title="衣Q交互体验" loading="lazy" scrolling="no" onload="resizeYiqFrame()"></iframe><aside class="yiq-qr"><button class="yiq-qr-trigger" id="yiqQrTrigger" aria-label="放大衣Q小程序码"><img class="yiq-qr-image" src="assets/projects/yiq/mini-program-qr.jpg" alt="衣Q微信小程序码"></button><div><h2>衣Q 微信小程序</h2><p>点击小程序码放大，使用微信扫码体验。</p></div></aside></div><div class="yiq-qr-popup" id="yiqQrPopup" hidden><div class="yiq-qr-popup-inner"><img class="yiq-qr-image" src="assets/projects/yiq/mini-program-qr.jpg" alt="衣Q微信小程序码放大图"><p>使用微信扫码，进入衣Q小程序。</p></div></div><div class="yiq-proof"><p class="yiq-role">我在衣Q项目中负责从<strong>产品设计、开发实现到上线交付</strong>的完整流程。</p><div class="yiq-proof-grid"><figure><img src="assets/projects/yiq/internal-test.jpg" alt="衣Q项目开展内测，参与者展示可持续服装实践成果"><figcaption>衣Q项目开展用户内测，以真实参与和反馈验证产品体验。</figcaption></figure><figure><img src="assets/projects/yiq/bangkok-climate-week.png" alt="衣Q项目组参加曼谷气候周"><figcaption>衣Q项目组参加曼谷气候周，与青年行动者交流公平转型议题。</figcaption></figure></div><p class="yiq-cop31">项目组随后受邀组织一场 <strong>COP31 边会工作坊</strong>，将青年可持续消费实践带入更广泛的气候行动讨论。</p><section class="yiq-videos" aria-labelledby="yiqVideoTitle"><h2 id="yiqVideoTitle">项目现场与过程记录</h2><div class="yiq-video-grid"><video controls muted playsinline preload="metadata" src="assets/projects/yiq/project-video-01.mp4" aria-label="衣Q项目视频记录一"></video><video controls muted playsinline preload="metadata" src="assets/projects/yiq/project-video-02.mp4" aria-label="衣Q项目视频记录二"></video><video controls muted playsinline preload="metadata" src="assets/projects/yiq/project-video-03.mp4" aria-label="衣Q项目视频记录三"></video></div></section></div></section></dialog>
+<dialog class="didi-canvas" id="didiCanvas" aria-labelledby="didiCanvasTitle"><div class="didi-canvas-shell" id="didiCanvasShell"><div class="didi-canvas-stage" id="didiCanvasStage"><img id="didiCanvasImage" src="assets/experience/didi-safety-design-board.jpg" alt="滴滴安全中心与亲友守护功能设计展板" draggable="false"></div></div><header class="didi-canvas-toolbar"><span class="didi-canvas-title" id="didiCanvasTitle">滴滴安全中台 · 产品设计实习</span><div class="didi-canvas-actions"><button type="button" data-didi-zoom="out" aria-label="缩小">−</button><span class="didi-canvas-zoom" id="didiCanvasZoom">100%</span><button type="button" data-didi-zoom="in" aria-label="放大">＋</button><button type="button" data-didi-fit>适合屏幕</button><button type="button" class="didi-close" id="closeDidiCanvas" aria-label="关闭滴滴项目画布">×</button></div></header><p class="didi-canvas-help">拖拽移动 · 滚轮或双指缩放</p></dialog>
+<script>
+const projects=[{"title":"地球online","category":"UI/UX","year":"INTERACTIVE","summary":"沉浸式交互体验 · AI 产品","mediaType":"video","cover":"assets/project-covers/earth-online.mp4","introVideo":"assets/projects/earth-online/node-2.mp4","interactive":"assets/projects/earth-online/index.html"},{"title":"20点开袋｜活动体验设计","category":"UI/UX","year":"PDF","summary":"活动运营 · 视觉设计","mediaType":"video","cover":"assets/embedded/18407c6c4be0b6fa.mp4","pdfData":"assets/embedded/953dbeae93596048.pdf"},{"title":"设计网盘智能命名助手","category":"UI/UX","year":"PDF","summary":"AI 产品 · 体验设计","mediaType":"image","cover":"assets/embedded/79da2b336dddc571.png","pdfData":"assets/embedded/5ef8691381b83fa0.pdf"},{"title":"GrowFi｜成长型金融产品","category":"UI/UX","year":"PDF","summary":"产品体验 · UI/UX","mediaType":"video","cover":"assets/embedded/8b68cffe1843973a.mp4","pdfData":"assets/embedded/be42b1080fd95d2d.pdf"},{"title":"AI 收藏｜智能内容体验","category":"UI/UX","year":"PDF","summary":"AI 体验 · 交互设计","mediaType":"video","cover":"assets/embedded/0d624ab5e706f39f.mp4","pdfData":"assets/embedded/b49ab6a55cecee75.pdf"},{"title":"加载中","category":"UI/UX","year":"PDF","summary":"休闲小游戏与奶茶品牌策略","mediaType":"video","pdf":"assets/projects/uiux-loading.pdf","preview":"assets/projects/uiux-loading.jpg","cover":"assets/project-covers/loading.mp4","full":"assets/embedded/45a932575aba44be.jpg"},{"title":"有龍","category":"BRAND","year":"PDF","summary":"东方龙文化品牌视觉识别系统","mediaType":"video","pdf":"assets/projects/brand-youlong.pdf","preview":"assets/projects/brand-youlong.jpg","cover":"assets/project-covers/brand-youlong.mp4","full":"assets/embedded/47e3b1e9975555ca.jpg"},{"title":"八仙新年","category":"BRAND","year":"PDF","summary":"八仙送福新年礼盒与包装视觉设计","mediaType":"video","pdf":"assets/projects/brand-baxian.pdf","preview":"assets/projects/brand-baxian.jpg","cover":"assets/project-covers/brand-baxian.mp4","full":"assets/embedded/a8adbbe73754d811.jpg"},{"title":"黔程锦绣","category":"BRAND","year":"PDF","summary":"贵州苗绣文化视觉识别与文创系统","mediaType":"video","pdf":"assets/projects/brand-qian.pdf","preview":"assets/projects/brand-qian.jpg","cover":"assets/project-covers/brand-qian.mp4","full":"assets/embedded/802337cbf0013847.jpg"},{"title":"植得 Merit","category":"BRAND","year":"PDF","summary":"植物营养品牌策略与包装视觉设计","mediaType":"video","pdf":"assets/projects/brand-merit.pdf","preview":"assets/projects/brand-merit.jpg","cover":"assets/project-covers/brand-merit.mp4","full":"assets/embedded/9269482b3e46cf50.jpg"},{"title":"粉韵","category":"BRAND","year":"PDF","summary":"传统陶瓷粉彩装饰书籍与文创设计","mediaType":"video","pdf":"assets/projects/brand-fenyun.pdf","preview":"assets/projects/brand-fenyun.jpg","cover":"assets/project-covers/brand-fenyun.mp4","full":"assets/embedded/943744371f2ae0a1.jpg"},{"title":"桃花姬","category":"BRAND","year":"PDF","summary":"阿胶糕礼盒包装与系列插画设计","mediaType":"video","pdf":"assets/projects/brand-taohuaji.pdf","preview":"assets/projects/brand-taohuaji.jpg","cover":"assets/project-covers/brand-taohuaji.mp4","full":"assets/embedded/611da470d5dbaf70.jpg"},{"title":"江中健胃消食片","category":"BRAND","year":"PDF","summary":"健胃消食产品包装与周边礼盒设计","mediaType":"video","pdf":"assets/projects/brand-jiangzhong.pdf","preview":"assets/projects/brand-jiangzhong.jpg","cover":"assets/project-covers/brand-jiangzhong.mp4","full":"assets/embedded/57d27d523d4f10ed.jpg"}];
+projects.unshift({"title":"携程 IBU-UED 实习项目","category":"UI/UX","year":"2026","summary":"业务 UI 设计 · AI 生 UI 工作流 · iPhone DUO 多形态适配","mediaType":"image","cover":"assets/project-covers/ctrip-internship.png","pdfData":"assets/experience/ctrip-portfolio.pdf"});
+const $=id=>document.getElementById(id),bg=$('background'),film=$('film'),page=$('page'),content=$('content');let experienceEntering=false;let route='home',entering=false,category='all',index=0,paused=false;
+const entries={research:[['2023–4','参与老师课题组，开展《天津五大道历史文化街区主题文创设计研究》',''],['2024–6','作为团队负责人开展超级微藻肥C端发展研究','《Merit植得——果蔬花卉肥料品牌策划》获全国商业精英挑战赛国家级二等奖，并申请外观专利2项'],['2025–10','参与组内课题利用弹簧动力帮助下肢机能下降老年人提供行走助力—助力外骨骼',''],['2026','撰写无障碍设计相关书籍',''],['2026–6','衣Q｜青年女性可持续消费决策助手产品设计','AI Coding 开发，运用 AI Coding 完成微信小程序开发与迭代']],experience:[['2026.6–2026.11','携程计算机技术（上海）有限公司','IBU–UED｜体验设计实习生（UI/UX）<br>业务 UI 设计：基于携程 CDS 设计系统与组件库，完成表单、信息卡片、弹窗及半屏浮层等多场景页面设计。<br>AI 辅助设计工作流：构建设计知识卡片并编写迭代 Design Skill，实现 AI 读取组件规范、直接在 Figma 中生成页面，页面还原度约70%，支持响应式布局。<br>折叠屏适配探索：针对 DUO 外屏横向、内屏竖向及横向场景，研究响应式布局与组件拆解重组规则，探索页面自动化适配及视觉质量检查。'],['2026.1–2026.4','北京嘀嘀无限科技发展有限公司','安全中台｜产品设计实习生<br>安全文化运营：参与策划员工运动打卡活动，曝光量滴滴内网第一、参与人数上千；完成10个 H5、4场线下活动及2处宣传位设计，助力「安全一线」年度订阅号。<br>安全提报优化：优化行程及信息安全问题提报路径，推动线下提报新增120条。<br>内部活动设计：参与年度安全大会、管理者安全论坛等活动，负责主KV、H5及线下物料落地。'],['2024.12–2025.4','用友网络科技股份有限公司','智石开项目官网设计制作、产品大会所有物料设计，并与印刷厂对接<br>公众号运营、PPT设计规范'],['2023.6–2024.6','天津工业大学艺术学院媒体责编','负责学院唯一官方公众运营，公众号管理并撰写推文，总阅读量3万+<br>打造“繁星志愿者”品牌，组织多次传统文化走进乡村社区']]};
+function listing(name,en,data){return `<section class="section"><p class="eyebrow">YanTing / ${en}</p><h1>${name} <span style="color:#999">${en}</span></h1>${data.map(e=>{const yonyou=e[1]==='用友网络科技股份有限公司';return `<article class="entry" ${yonyou?'data-experience-video="yonyou" role="button" tabindex="0"':''}><time>${e[0]}</time><div><h2>${e[1]}</h2>${e[2]?`<p>${e[2]}</p>`:''}</div></article>`}).join('')}</section>`}
+const education=`<div class="education"><p class="eyebrow">01 / SCHOOL</p><h2>学校 <span style="color:#999">School</span></h2><article class="entry"><time>2021–2025 本科</time><div><h2>天津工业大学 艺术学院</h2><p><strong>视觉传达设计专业（双一流学科）</strong><br>学业绩点：3.8/4.00　专业综合排名：1/75（前5%）<br>主要修读课程：信息设计（91）、用户体验设计、UI设计、导视、包装容器等<br>荣誉奖项：天津市人民政府奖学金（前1%）、国家励志奖学金、校长一等奖学金、优秀学生干部</p></div></article><article class="entry"><time>2025–2028 研究生</time><div><h2>南京理工大学（211）设计学院</h2><p><strong>工业设计工程</strong><br>主要修读课程：设计心理学、数字媒体与信息技术、人机工程设计、服务设计<br>荣誉奖项：研究生学业一等奖学金</p></div></article></div>`;
+function show(r){if(entering)return;document.body.classList.toggle('experience-open',r==='experience');route=r;bg.pause();$('identityBadge').classList.remove('is-dropped');page.classList.toggle('dark',r==='work');page.classList.add('active');page.setAttribute('aria-hidden','false');page.scrollTop=0;if(r==='work'){renderWork()}else if(r==='experience')content.innerHTML=experienceMarkup();else if(r==='research')content.innerHTML=`<section class="section"><p class="eyebrow">YanTing / EDUCATION BACKGROUND</p><h1>教育背景 <span style="color:#999">Education</span></h1>${education}<div class="research-block"><p class="eyebrow">02 / RESEARCH</p>${listing('科研','Research',entries.research)}</div></section>`;else if(entries[r])content.innerHTML=listing('实践','Experience',entries[r]);else content.innerHTML=`<section class="section"><p class="eyebrow">RECOGNITION</p><h1>获奖 <span style="color:#999">Awards</span></h1><p class="award-intro">曾获以下等国家级奖项<b>8</b>项、省部级<b>11</b>项</p>${['国家级米兰设计周 · 中国高校设计学科师生优秀作品展二等奖*2','国家级蓝桥杯大赛国非命题赛三等奖、省级一等奖','国家级全国高校商业精英挑战赛二等奖','国家级中国大学生广告艺术节学院奖优秀奖*2'].map((v,i)=>`<div class="award-row"><span>AWARD / 0${i+1}</span>${v}</div>`).join('')}</section>`;$('back').focus({preventScroll:true});$('home').inert=true}
+function home(){experienceEntering=false;experienceFilm.pause();experienceOverlay.classList.remove('active','leaving');experienceOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('experience-open');entering=false;film.pause();$('transition').classList.remove('active');page.classList.remove('active');page.setAttribute('aria-hidden','true');$('home').inert=false;route='home';if(!paused)bg.play().catch(()=>{});$('enterWork').focus({preventScroll:true})}
+function openWork(){if(entering||route!=='home')return;entering=true;bg.pause();$('home').inert=true;film.currentTime=0;film.playbackRate=1;$('transition').classList.add('active');film.play().catch(finish);}
+function finish(){if(!entering)return;film.pause();entering=false;show('work');setTimeout(()=>$('transition').classList.remove('active'),400)}
+function drop(){let el=$('identityBadge');el.classList.remove('is-dropped');void el.offsetWidth;el.classList.add('is-dropped');$('badgeTrigger').setAttribute('aria-expanded','true')}
+function selected(){return category==='all'?projects:projects.filter(p=>p.category===category)}
+function renderWork(){
+ content.innerHTML=`<div class="work-scene" aria-label="作品集展示场景">
+ <img class="work-bg" src="assets/embedded/ebe0476d8fde70e3.png" alt="MacBook Pro 作品集展示背景">
+ <div class="work-screen-shade"></div>
+ <div class="work-screen-ui">
+ <button class="work-back" id="workBack">← 返回首页</button>
+ <div class="filters" role="tablist" aria-label="作品分类">${[['all','全部'],['UI/UX','UI/UX'],['BRAND','品牌']].map(([v,t])=>`<button role="tab" aria-selected="${category===v}" data-filter="${v}" class="${category===v?'selected':''}">${t}</button>`).join('')}</div>
+ <div class="carousel" id="carousel" role="region" aria-label="作品封面轮播" tabindex="0"></div>
+ <div class="work-caption" aria-live="polite"><h2 id="workName"></h2><p id="workSummary"></p></div>
+ <div class="work-controls"><button id="prev" aria-label="上一个作品">‹</button><span id="count"></span><button id="next" aria-label="下一个作品">›</button><button id="auto" aria-label="自动轮播开关">${auto?'Ⅱ':'▷'}</button></div>
+ </div></div>`;
+ content.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{category=b.dataset.filter;index=0;renderWork()});
+ $('workBack').onclick=home;$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);
+ $('auto').onclick=()=>{auto=!auto;$('auto').textContent=auto?'Ⅱ':'▷';$('auto').setAttribute('aria-label',auto?'暂停自动轮播':'开启自动轮播')};
+ let start=0;$('carousel').onpointerdown=e=>{start=e.clientX};$('carousel').onpointerup=e=>{if(Math.abs(e.clientX-start)>35)move(e.clientX<start?1:-1)};
+ $('carousel').onkeydown=e=>{if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1)};paint();
+}
+function paint(){
+ let ds=selected();if(!ds.length)return;if(index>=ds.length)index=0;
+ const carousel=$('carousel'),cards=[...carousel.querySelectorAll('[data-card]')];
+ const needsRebuild=cards.length!==ds.length||cards.some((card,i)=>card.dataset.key!==ds[i].title);
+ if(needsRebuild)carousel.innerHTML=ds.map((p,i)=>`<button class="work-card" data-card="${i}" data-key="${p.title}" aria-label="${p.title}">${p.mediaType==='video'?`<video src="${p.cover}" muted playsinline loop autoplay preload="metadata"></video>`:`<img draggable="false" src="${p.cover}" alt="${p.title}封面">`}</button>`).join('');
+ content.querySelectorAll('[data-card]').forEach(b=>{
+  let i=+b.dataset.card,d=(i-index+ds.length)%ds.length;if(d>ds.length/2)d-=ds.length;let a=Math.abs(d);
+  b.classList.toggle('current',a===0);b.setAttribute('aria-label',ds[i].title+(a===0?'，打开完整作品':''));
+  b.style.transform=`translate(calc(-50% + ${d*(innerWidth<700?30:23)}%), -50%) scale(${a===0?1:a===1?.82:.66}) rotateY(${d===0?0:d>0?-17:17}deg)`;
+  b.style.zIndex=10-a;b.style.opacity=a>2?0:a===2?.72:1;b.style.visibility=a>2?'hidden':'visible';b.tabIndex=a===0?0:-1;
+  b.onclick=()=>{if(Math.abs(lastPointerDistance)>40)return;index=i;paint();detail(ds[i])};
+ });
+ $('workName').textContent=ds[index].title;$('workSummary').textContent=ds[index].summary;
+ $('count').textContent=String(index+1).padStart(2,'0')+' / '+String(ds.length).padStart(2,'0');
+}
+let lastPointerDistance=0,downX=0;document.addEventListener('pointerdown',e=>{downX=e.clientX;lastPointerDistance=0});document.addEventListener('pointerup',e=>{lastPointerDistance=Math.abs(e.clientX-downX)});
+function move(n){index=(index+n+selected().length)%selected().length;paint()}
+async function detail(p){
+ $('detailTitle').textContent=p.title;
+ const interactive=$('detailInteractive'),intro=$('detailIntroVideo'),frame=$('detailInteractiveFrame'),yiq=$('detailYiq'),yiqFrame=$('yiqFrame');
+ yiq.hidden=!p.yiq;
+ if(p.yiq){
+  $('detailPdf').hidden=true;$('detailPdf').src='';$('detailImage').hidden=true;interactive.hidden=true;intro.pause();intro.removeAttribute('src');frame.src='about:blank';yiqFrame.src=p.yiq;
+ }else{
+  yiqFrame.src='about:blank';
+  if(p.videoOnly||p.interactive){$('detailPdf').hidden=true;$('detailPdf').src='';$('detailImage').hidden=true;interactive.hidden=false;frame.hidden=!!p.videoOnly;frame.src=p.interactive||'about:blank';intro.src=p.videoOnly||p.introVideo;intro.autoplay=true;intro.muted=true}
+  else if(p.pdfData){interactive.hidden=true;frame.hidden=false;frame.src='about:blank';intro.pause();intro.removeAttribute('src');$('detailImage').hidden=true;$('detailPdf').hidden=false;$('detailPdf').src=p.pdfData+'#toolbar=0&navpanes=0&scrollbar=0&view=FitH'}
+  else{interactive.hidden=true;frame.hidden=false;frame.src='about:blank';intro.pause();intro.removeAttribute('src');$('detailPdf').hidden=true;$('detailPdf').src='';$('detailImage').hidden=false;$('detailImage').src=p.full||'';$('detailImage').alt=p.title+'完整项目展示';try{await $('detailImage').decode()}catch{}}
+ }
+ $('details').showModal();$('details').scrollTop=0;if(p.videoOnly||p.interactive)intro.play().catch(()=>{})
+}
+function openYonyouExperience(){detail({title:'用友网络科技股份有限公司',videoOnly:'assets/experience/yonyou-experience.mp4'})}
+function openCtripExperience(){detail({title:'携程计算机技术（上海）有限公司',pdfData:'assets/experience/ctrip-portfolio.pdf'})}
+function openDidiExperience(){
+ const dialog=$('didiCanvas');dialog.showModal();requestAnimationFrame(fitDidiCanvas)
+}
+function openYiqExperience(){detail({title:'衣Q',yiq:'assets/projects/yiq/index.html'})}
+function resizeYiqFrame(){const frame=$('yiqFrame');if(frame.getAttribute('src')==='about:blank')return;try{const doc=frame.contentDocument;if(!doc)return;const apply=()=>{frame.style.height=Math.max(doc.documentElement.scrollHeight,doc.body?.scrollHeight||0,900)+'px'};apply();setTimeout(apply,250);setTimeout(apply,1000);if(!frame._resizeObserver&&window.ResizeObserver){frame._resizeObserver=new ResizeObserver(apply);frame._resizeObserver.observe(doc.documentElement)}}catch{}}
+function resetDetailMedia(){$('detailPdf').src='';$('detailIntroVideo').pause();$('detailIntroVideo').removeAttribute('src');$('detailInteractiveFrame').src='about:blank';const yiqFrame=$('yiqFrame');yiqFrame._resizeObserver?.disconnect();yiqFrame._resizeObserver=null;yiqFrame.src='about:blank';yiqFrame.style.height='900px';$('yiqQrPopup').hidden=true}
+let auto=!matchMedia('(prefers-reduced-motion: reduce)').matches;setInterval(()=>{if(route==='work'&&auto&&!$('details').open&&!document.hidden&&!$('carousel').matches(':hover'))move(1)},5000);
+document.querySelectorAll('[data-route]').forEach(b=>b.onclick=()=>b.dataset.route==='experience'?openExperience():show(b.dataset.route));$('enterWork').onclick=openWork;$('mobileWork').onclick=openWork;$('back').onclick=home;$('contact').onclick=drop;$('badgeTrigger').onclick=()=>{$('identityBadge').classList.contains('is-dropped')?($('identityBadge').classList.remove('is-dropped'),$('badgeTrigger').setAttribute('aria-expanded','false')):drop()};$('skip').onclick=finish;film.onended=finish;film.onerror=finish;$('closeDetail').onclick=()=>{$('detailPdf').src='';$('details').close()};$('details').onclick=e=>{if(e.target===$('details')){$('detailPdf').src='';$('details').close()}};document.onkeydown=e=>{if(e.key==='Escape'&&$('details').open){$('detailPdf').src='';return}if(e.key==='Escape'&&!$('details').open){if(entering||experienceEntering)home();else if(route!=='home')home();else $('identityBadge').classList.remove('is-dropped')}};$('pause').onclick=()=>{paused=!paused;paused?bg.pause():bg.play().catch(()=>{});$('pause').textContent=paused?'播放背景 ▷':'暂停背景 Ⅱ'};bg.playbackRate=.75;bg.muted=true;film.muted=true;bg.play().catch(()=>$('autoplayHint').style.display='block');$('autoplayHint').onclick=()=>{bg.play();$('autoplayHint').style.display='none'};document.addEventListener('visibilitychange',()=>{if(document.hidden)bg.pause();else if(route==='home'&&!entering&&!paused)bg.play().catch(()=>{})});
 
-    <section class="scene scene-education" data-scene="1" aria-label="教育经历" aria-hidden="true">
-      <h2 class="small-name reveal-line" data-profile-name>YanTing</h2>
-      <div class="education-copy reveal-group" id="educationCopy"></div>
-      <div class="services services-secondary reveal-group" aria-label="设计领域">
-        <span>UI/UX</span>
-        <span>品牌</span>
-        <span>包装</span>
-        <span>IP</span>
-      </div>
-    </section>
-
-    <section class="scene scene-experience" data-scene="2" aria-label="设计经历一" aria-hidden="true">
-      <article class="experience-copy reveal-group" id="experienceA"></article>
-    </section>
-
-    <section class="scene scene-experience scene-experience-b" data-scene="3" aria-label="用友网络科技设计经历，可点击播放项目视频" aria-hidden="true">
-      <article class="experience-copy reveal-group" id="experienceB"></article>
-      <button class="experience-video-trigger" id="experienceVideoTrigger" type="button" aria-haspopup="dialog" aria-controls="experienceVideoModal" aria-label="播放用友项目回顾视频">
-        <span class="experience-video-cta" aria-hidden="true"><i>▶</i><span>播放项目回顾</span></span>
-      </button>
-    </section>
-
-    <section class="scene scene-work" data-scene="4" aria-label="作品展示" aria-hidden="true">
-      <div class="work-stack">
-        <section class="project-row" data-carousel="uiux" aria-labelledby="uiuxTitle">
-          <div class="row-heading">
-            <h2 id="uiuxTitle">UI/UX设计</h2>
-            <div class="carousel-controls">
-              <button type="button" class="carousel-arrow" data-direction="prev" aria-label="查看上一组 UI/UX 作品">←</button>
-              <button type="button" class="carousel-arrow" data-direction="next" aria-label="查看下一组 UI/UX 作品">→</button>
-            </div>
-          </div>
-          <div class="carousel" tabindex="0" role="region" aria-label="UI/UX 作品轮播">
-            <div class="carousel-track" id="uiuxTrack"></div>
-          </div>
-        </section>
-
-        <section class="project-row" data-carousel="brand" aria-labelledby="brandTitle">
-          <div class="row-heading">
-            <h2 id="brandTitle">品牌设计</h2>
-            <div class="carousel-controls">
-              <button type="button" class="carousel-arrow" data-direction="prev" aria-label="查看上一组品牌作品">←</button>
-              <button type="button" class="carousel-arrow" data-direction="next" aria-label="查看下一组品牌作品">→</button>
-            </div>
-          </div>
-          <div class="carousel" tabindex="0" role="region" aria-label="品牌设计作品轮播">
-            <div class="carousel-track" id="brandTrack"></div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <div class="scene-progress" aria-hidden="true">
-      <span class="progress-current">01</span>
-      <span class="progress-line"><i></i></span>
-      <span>05</span>
-    </div>
-    <p id="sceneStatus" class="sr-only" aria-live="polite">第 1 屏，共 5 屏：首页</p>
-  </main>
-
-  <dialog class="project-modal" id="projectModal" aria-labelledby="modalProjectTitle">
-    <div class="modal-shell">
-      <header class="modal-header">
-        <div class="modal-heading">
-          <span class="modal-category">PROJECT CASE</span>
-          <h2 id="modalProjectTitle">PROJECT 01</h2>
-          <span class="modal-counter" id="modalCounter">01 / 04</span>
-        </div>
-        <div class="modal-actions">
-          <a class="modal-action" id="openPdfLink" href="#" target="_blank" rel="noopener">新窗口打开 ↗</a>
-          <button class="modal-close" id="closeProjectModal" type="button" aria-label="关闭项目预览">×</button>
-        </div>
-      </header>
-      <div class="pdf-stage is-loading" id="pdfStage">
-        <div class="project-scroll" id="projectScroll" tabindex="0" aria-label="项目长图浏览区域">
-          <img id="projectImage" alt="" decoding="async">
-        </div>
-        <p class="image-loading" id="imageLoading">作品加载中…</p>
-        <button class="modal-nav modal-prev" id="previousPdf" type="button" aria-label="上一个项目">←</button>
-        <button class="modal-nav modal-next" id="nextPdf" type="button" aria-label="下一个项目">→</button>
-      </div>
-    </div>
-  </dialog>
-
-  <dialog class="experience-modal" id="experienceVideoModal" aria-labelledby="experienceVideoTitle">
-    <div class="experience-modal-shell">
-      <header class="experience-modal-header">
-        <div class="experience-modal-heading">
-          <span class="experience-modal-category">EXPERIENCE FILM</span>
-          <h2 id="experienceVideoTitle">用友 · 项目回顾</h2>
-        </div>
-        <button class="modal-close" id="closeExperienceVideo" type="button" aria-label="关闭项目视频">×</button>
-      </header>
-      <div class="experience-video-stage">
-        <video id="experienceVideo" controls playsinline preload="metadata" poster="assets/scene-04.webp">
-          <source src="assets/yonyou-experience.mp4" type="video/mp4">
-          你的浏览器暂不支持视频播放。
-        </video>
-      </div>
-    </div>
-  </dialog>
-
-  <noscript><p class="noscript">请启用 JavaScript 以浏览滚动叙事和作品轮播。</p></noscript>
-  <script src="script.js?v=20260731-10"></script>
-</body>
-</html>
+content.addEventListener('click',e=>{if(e.target.closest('[data-experience-video="yonyou"]'))openYonyouExperience();else if(e.target.closest('[data-experience-pdf="ctrip"]'))openCtripExperience();else if(e.target.closest('[data-experience-didi]'))openDidiExperience();else if(e.target.closest('[data-experience-yiq]'))openYiqExperience()});
+content.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;if(e.target.closest('[data-experience-video="yonyou"]')){e.preventDefault();openYonyouExperience()}else if(e.target.closest('[data-experience-pdf="ctrip"]')){e.preventDefault();openCtripExperience()}else if(e.target.closest('[data-experience-didi]')){e.preventDefault();openDidiExperience()}else if(e.target.closest('[data-experience-yiq]')){e.preventDefault();openYiqExperience()}});
+$('yiqQrTrigger').onclick=()=>$('yiqQrPopup').hidden=false;
+$('yiqQrPopup').onclick=e=>{if(e.target===$('yiqQrPopup'))$('yiqQrPopup').hidden=true};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('yiqQrPopup').hidden){e.preventDefault();e.stopImmediatePropagation();$('yiqQrPopup').hidden=true}},true);
+$('details').addEventListener('close',resetDetailMedia);
+const didiCanvas=$('didiCanvas'),didiShell=$('didiCanvasShell'),didiStage=$('didiCanvasStage'),didiImage=$('didiCanvasImage');
+let didiScale=1,didiX=0,didiY=0,didiFitScale=1,didiPointers=new Map(),didiPinch=null;
+function renderDidiCanvas(){didiStage.style.transform=`translate(${didiX}px,${didiY}px) scale(${didiScale})`;$('didiCanvasZoom').textContent=Math.round(didiScale*100)+'%'}
+function fitDidiCanvas(){
+ const w=didiImage.naturalWidth||3572,h=didiImage.naturalHeight||2072,pad=32;
+ didiFitScale=Math.min((didiShell.clientWidth-pad*2)/w,(didiShell.clientHeight-pad*2)/h,1);didiScale=didiFitScale;didiX=(didiShell.clientWidth-w*didiScale)/2;didiY=(didiShell.clientHeight-h*didiScale)/2;renderDidiCanvas()
+}
+function zoomDidi(next,cx=didiShell.clientWidth/2,cy=didiShell.clientHeight/2){
+ next=Math.min(Math.max(next,didiFitScale*.55),4);const ratio=next/didiScale;didiX=cx-(cx-didiX)*ratio;didiY=cy-(cy-didiY)*ratio;didiScale=next;renderDidiCanvas()
+}
+didiShell.addEventListener('wheel',e=>{e.preventDefault();const r=didiShell.getBoundingClientRect();zoomDidi(didiScale*Math.exp(-e.deltaY*.0015),e.clientX-r.left,e.clientY-r.top)},{passive:false});
+didiShell.addEventListener('pointerdown',e=>{didiShell.setPointerCapture(e.pointerId);didiPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});didiShell.classList.add('is-dragging');if(didiPointers.size===2){const p=[...didiPointers.values()];didiPinch={distance:Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y),scale:didiScale}}});
+didiShell.addEventListener('pointermove',e=>{const prev=didiPointers.get(e.pointerId);if(!prev)return;didiPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(didiPointers.size===1){didiX+=e.clientX-prev.x;didiY+=e.clientY-prev.y;renderDidiCanvas()}else if(didiPointers.size===2&&didiPinch){const p=[...didiPointers.values()],midX=(p[0].x+p[1].x)/2,midY=(p[0].y+p[1].y)/2;zoomDidi(didiPinch.scale*Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y)/didiPinch.distance,midX,midY)}});
+function endDidiPointer(e){didiPointers.delete(e.pointerId);didiPinch=null;if(!didiPointers.size)didiShell.classList.remove('is-dragging')}
+didiShell.addEventListener('pointerup',endDidiPointer);didiShell.addEventListener('pointercancel',endDidiPointer);
+didiCanvas.querySelectorAll('[data-didi-zoom]').forEach(button=>button.onclick=()=>zoomDidi(didiScale*(button.dataset.didiZoom==='in'?1.25:.8)));
+didiCanvas.querySelector('[data-didi-fit]').onclick=fitDidiCanvas;$('closeDidiCanvas').onclick=()=>didiCanvas.close();
+didiCanvas.addEventListener('dblclick',fitDidiCanvas);didiCanvas.addEventListener('close',()=>{didiPointers.clear();didiShell.classList.remove('is-dragging')});
+window.addEventListener('resize',()=>{if(didiCanvas.open)fitDidiCanvas()});
+const boardSource='assets/embedded/2ce4a00f673063d4.jpg';const boardPreload=new Image();boardPreload.src=boardSource;
+const experienceFilm=$('experienceFilm'),experienceOverlay=$('experienceTransition');
+function experienceMarkup(){return `<div class="experience-board"><div class="experience-board-media"><img src="${boardSource}" alt="实践经历拼贴展板：携程、滴滴、用友、天津工业大学及衣Q"><button class="experience-hotspot ctrip" data-experience-pdf="ctrip" data-label="查看携程作品集 ↗" aria-label="查看携程作品集 PDF"></button><button class="experience-hotspot didi" data-experience-didi data-label="查看滴滴设计项目 ↗" aria-label="查看滴滴安全中台产品设计项目"></button><button class="experience-hotspot" data-experience-video="yonyou" data-label="查看用友项目 ↗" aria-label="查看用友项目视频"></button><button class="experience-hotspot yiq" data-experience-yiq data-label="体验衣Q项目 ↗" aria-label="查看衣Q交互项目"></button></div></div>`}
+async function openExperience(){
+ if(entering||experienceEntering||route!=='home')return;
+ experienceEntering=true;experienceFinishing=false;bg.pause();$('identityBadge').classList.remove('is-dropped');
+ experienceFilm.currentTime=0;experienceFilm.muted=true;experienceFilm.playbackRate=1;
+ experienceOverlay.classList.remove('leaving');experienceOverlay.classList.add('active');experienceOverlay.setAttribute('aria-hidden','false');
+ $('skipExperience').focus({preventScroll:true});$('home').inert=true;
+ try{await experienceFilm.play()}catch{finishExperience()}
+}
+let experienceFinishing=false;
+async function finishExperience(){
+ if(!experienceEntering||experienceFinishing)return;experienceFinishing=true;
+ experienceFilm.pause();
+ try{await boardPreload.decode()}catch{}
+ if(!experienceEntering)return;
+ show('experience');
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  if(!experienceEntering)return;
+  experienceOverlay.classList.add('leaving');
+  setTimeout(()=>{if(!experienceEntering)return;experienceOverlay.classList.remove('active','leaving');experienceOverlay.setAttribute('aria-hidden','true');experienceEntering=false},900)
+ }));
+}
+experienceFilm.onended=finishExperience;experienceFilm.onerror=finishExperience;$('skipExperience').onclick=finishExperience;
+</script></body></html>

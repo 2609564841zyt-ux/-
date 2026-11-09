@@ -3,5 +3,9 @@
   "framework": null,
   "buildCommand": "node build/prepare-static.mjs",
   "outputDirectory": "public",
-  "cleanUrls": false
+  "cleanUrls": true,
+  "headers": [
+    {"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
+    {"source": "/assets/(.*)\\.pdf", "headers": [{"key": "Content-Type", "value": "application/pdf"}, {"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]}
+  ]
 }
